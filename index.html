@@ -1,167 +1,22 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="All About Hair - giải pháp chăm sóc tóc thuần chay, khởi nguồn mái tóc khỏe đẹp từ da đầu khỏe mạnh."
+    />
     <title>All About Hair | Khởi nguồn mái tóc khỏe đẹp</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Import Font chữ sang trọng -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <!-- Icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
-    <!-- HEADER -->
-    <header>
-        <div class="logo">ALL ABOUT HAIR</div>
-        <nav>
-            <ul>
-                <li><a href="#products">Sản Phẩm</a></li>
-                <li><a href="#combo">Combo Toàn Diện</a></li>
-                <li><a href="#scalp-center" class="highlight-link">Scalp Center</a></li>
-                <li><a href="#story">Chuyện Tóc</a></li>
-            </ul>
-        </nav>
-        <div class="header-icons">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <i class="fa-regular fa-user"></i>
-            <i class="fa-solid fa-bag-shopping"></i>
-        </div>
-    </header>
-
-    <!-- HERO BANNER (Cinematic) -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Khoa học Trichology</h1>
-            <p>Khởi nguồn mái tóc khỏe đẹp bền vững từ một da đầu khỏe mạnh. Trải nghiệm giải pháp thuần chay từ thiên nhiên.</p>
-            <a href="#products" class="btn btn-primary">Khám Phá Ngay</a>
-        </div>
-        <img src="assets/hero-banner.png" alt="Bộ sản phẩm chăm sóc tóc All About Hair">
-    </section>
-
-    <!-- FLASHSALE TÍCH HỢP NGAY TRANG CHỦ -->
-    <section class="flashsale">
-        <div class="flashsale-header">
-            <h2><i class="fa-solid fa-bolt"></i> ƯU ĐÃI ĐẶC QUYỀN</h2>
-            <div class="countdown">
-                <span>Kết thúc sau: </span>
-                <div class="time-box">05</div> :
-                <div class="time-box">24</div> :
-                <div class="time-box">59</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SẢN PHẨM NỔI BẬT -->
-    <section id="products" class="bestsellers">
-        <h2 class="section-title">Sản Phẩm Chủ Lực</h2>
-        <div class="product-grid">
-            <!-- Sản phẩm 1 -->
-            <div class="product-card">
-                <div class="product-img">
-                    <img src="https://images.unsplash.com/photo-1608248593842-8eb13fb1d0b1?q=80&w=600&auto=format&fit=crop" alt="Xịt Dưỡng Biotin">
-                    <span class="badge vegan">Vegan</span>
-                </div>
-                <div class="product-info">
-                    <h3>Xịt dưỡng tóc Biotin Thuần chay</h3>
-                    <p class="price">299.000 VNĐ</p>
-                    <button class="btn btn-outline">Thêm vào giỏ</button>
-                </div>
-            </div>
-            <!-- Sản phẩm 2 -->
-            <div class="product-card">
-                <div class="product-img">
-                    <img src="https://images.unsplash.com/photo-1629198688000-71f23e745b6e?q=80&w=600&auto=format&fit=crop" alt="Scalp Scrub">
-                    <span class="badge hot">Best Seller</span>
-                </div>
-                <div class="product-info">
-                    <h3>Tẩy tế bào chết da đầu Scalp Scrub</h3>
-                    <p class="price">379.000 VNĐ</p>
-                    <button class="btn btn-outline">Thêm vào giỏ</button>
-                </div>
-            </div>
-            <!-- Sản phẩm 3 -->
-            <div class="product-card">
-                <div class="product-img">
-                    <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=600&auto=format&fit=crop" alt="Bond Complex">
-                </div>
-                <div class="product-info">
-                    <h3>Dầu xả Serum Mềm mượt Bond Complex</h3>
-                    <p class="price">299.000 VNĐ</p>
-                    <button class="btn btn-outline">Thêm vào giỏ</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CHUYỆN TÓC -->
-    <section id="story" class="story-section">
-        <div class="story-container">
-            <div class="story-image">
-                <img loading="lazy" alt="Ảnh Chuyện Tóc" src="https://allabouthairvietnam.com/img_data/images/image.png">
-            </div>
-            <div class="story-content">
-                <p class="story-eyebrow">ALL ABOUT HAIR</p>
-                <h2>CHUYỆN TÓC</h2>
-                <p>Góc nhỏ dành cho những ai muốn hiểu và chăm sóc mái tóc của mình theo cách tự nhiên nhất. Ở đây có những chia sẻ gần gũi về tóc, da đầu và thói quen chăm sóc mỗi ngày - từ kiến thức dễ hiểu đến những gợi ý nhỏ giúp bạn lắng nghe mái tóc mình tốt hơn. AAH mong rằng, qua từng bài viết, việc chăm sóc tóc sẽ trở thành một phần nhẹ nhàng và vừa vặn trong nhịp sống hằng ngày của bạn.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- SCALP CENTER BOOKING FORM -->
-    <section id="scalp-center" class="booking-section">
-        <div class="booking-container">
-            <div class="booking-text">
-                <h2>AAH Scalp Center</h2>
-                <p>Trung tâm phục hồi và chăm sóc chuyên sâu. Hãy để chuyên gia của chúng tôi lắng nghe và chăm sóc da đầu bạn bằng các liệu pháp thiên nhiên kết hợp công nghệ hiện đại.</p>
-                <ul class="features">
-                    <li><i class="fa-solid fa-check"></i> Soi da đầu miễn phí</li>
-                    <li><i class="fa-solid fa-check"></i> Phác đồ điều trị cá nhân hóa</li>
-                    <li><i class="fa-solid fa-check"></i> Không gian thư giãn tĩnh tâm</li>
-                </ul>
-            </div>
-            <div class="booking-form-box">
-                <h3>Đặt Lịch Hẹn</h3>
-                <form id="bookingForm">
-                    <input type="text" placeholder="Họ và Tên của bạn" required>
-                    <input type="tel" placeholder="Số điện thoại" required>
-                    <select required>
-                        <option value="" disabled selected>Chọn dịch vụ</option>
-                        <option value="soida">Soi da đầu & Tư vấn</option>
-                        <option value="detox">Detox Da Đầu Chuyên Sâu</option>
-                        <option value="phuchoi">Phục hồi liên kết tóc</option>
-                    </select>
-                    <input type="date" required>
-                    <button type="button" class="btn btn-primary btn-full" onclick="alert('Demo: Đã nhận lịch hẹn! Ở giai đoạn sau chúng ta sẽ gắn tính năng thật vào đây.')">Xác nhận Đặt Lịch</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-col">
-            <div class="logo">ALL ABOUT HAIR</div>
-            <p>Phát triển từ năm 2016, tiên phong ứng dụng khoa học Trichology vào các sản phẩm chăm sóc tóc thuần Việt.</p>
-        </div>
-    </footer>
-    <script>
-        const storySection = document.querySelector(".story-section");
-
-        if ("IntersectionObserver" in window && storySection) {
-            storySection.classList.add("is-observing");
-
-            const storyObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("is-visible");
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.2 });
-
-            storyObserver.observe(storySection);
-        }
-    </script>
-</body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
