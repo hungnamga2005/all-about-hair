@@ -67,6 +67,41 @@ function ProductSection() {
   );
 }
 
+function KenSection() {
+  return (
+    <ScrollReveal
+      as={motion.section}
+      className="ken-section"
+      aria-label="Kén scrunchie"
+    >
+      <div className="ken-section-inner">
+        <div className="ken-section-content">
+          <ScrollReveal as={motion.div} className="ken-details" delay={0.12}>
+            <p className="story-eyebrow">CÙNG OUTFIT · CÙNG KIỂU TÓC</p>
+            <h3>Khác một chi tiết, thêm một thần thái.</h3>
+            <p>
+              Kén đồng hành cùng bạn trong những khoảnh khắc thường ngày, để
+              mỗi kiểu tóc mang một dấu ấn riêng.
+            </p>
+          </ScrollReveal>
+          <ScrollReveal as={motion.figure} className="ken-product">
+            <img src="/k1.png" alt="Scrunchie Kén màu đen" loading="lazy" />
+            <img className="ken-corner-image" src="/k2.png" alt="" aria-hidden="true" />
+          </ScrollReveal>
+        </div>
+
+        <ScrollReveal as={motion.figure} className="ken-comparison" delay={0.08}>
+          <img
+            src="/compare.jpg"
+            alt="So sánh kiểu tóc trước và sau khi tạo điểm nhấn với scrunchie Kén"
+            loading="lazy"
+          />
+        </ScrollReveal>
+      </div>
+    </ScrollReveal>
+  );
+}
+
 function StorySection() {
   return (
     <ScrollReveal as={motion.section} id="story" className="story-section">
@@ -156,6 +191,7 @@ export default function HomePage() {
 
       <TextLoop />
       <ProductShowcase />
+      <KenSection />
 
       <ScrollReveal as={motion.section} id="combo" className="flashsale" aria-label="Ưu đãi đặc quyền">
         <ScrollReveal as={motion.div} className="flashsale-header">
