@@ -86,8 +86,12 @@ nav a:hover {
 
 /* --- HERO BANNER --- */
 .hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     height: 100vh;
-    background: #ffffff;
+    min-height: 560px;
+    background: #2b2131;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -95,19 +99,43 @@ nav a:hover {
     padding: 0 20px;
 }
 
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(24, 17, 29, 0.48);
+}
+
+.hero > img {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    color: #ffffff;
+}
+
 .hero-content h1 {
-    font-size: 5rem;
+    font-size: clamp(2.75rem, 8vw, 5rem);
     margin-bottom: 20px;
-    color: var(--accent-color);
+    color: #ffffff;
     font-style: italic;
 }
 
 .hero-content p {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
     max-width: 600px;
     margin: 0 auto 40px auto;
     font-weight: 300;
-    color: var(--text-color);
+    color: rgba(255, 255, 255, 0.92);
 }
 
 .btn {
@@ -255,6 +283,80 @@ nav a:hover {
     color: #fff;
 }
 
+/* --- CHUYỆN TÓC --- */
+.story-section {
+    padding: 80px 5%;
+    background: #f8f5f9;
+    scroll-margin-top: 90px;
+}
+
+.story-container {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(35px, 7vw, 90px);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.story-image {
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: #eadcf5;
+}
+
+.story-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.story-content {
+    max-width: 540px;
+}
+
+.story-eyebrow {
+    margin-bottom: 12px;
+    color: var(--accent-color);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+}
+
+.story-content h2 {
+    margin-bottom: 22px;
+    color: var(--accent-color);
+    font-size: clamp(2.4rem, 5vw, 3.5rem);
+    letter-spacing: 0.04em;
+}
+
+.story-content > p:last-child {
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.9;
+}
+
+.story-section.is-observing .story-image {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.story-section.is-observing .story-content {
+    opacity: 0;
+    transform: translateX(36px);
+    transition: opacity 700ms ease 180ms, transform 700ms cubic-bezier(0.22, 1, 0.36, 1) 180ms;
+}
+
+.story-section.is-visible .story-image {
+    clip-path: inset(0);
+}
+
+.story-section.is-visible .story-content {
+    opacity: 1;
+    transform: translateX(0);
+}
+
 /* --- SCALP CENTER BOOKING --- */
 .booking-section {
     padding: 80px 5%;
@@ -343,4 +445,29 @@ footer p {
     margin-top: 15px;
     color: var(--text-color);
     font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .story-section {
+        padding: 60px 6%;
+    }
+
+    .story-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .story-content {
+        max-width: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .story-section.is-observing .story-image,
+    .story-section.is-observing .story-content {
+        clip-path: none;
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
