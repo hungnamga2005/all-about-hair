@@ -1,98 +1,135 @@
-import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-const products = [
+const steps = [
   {
-    name: "Dầu gội Scalp Care",
-    image: "/dg.png",
-    alt: "Dầu gội chăm sóc da đầu All About Hair",
-    className: "showcase-shampoo",
-    y: [40, -18, 40],
-    rotate: [-8, -3, 4],
-  },
-  {
+    eyebrow: "BƯỚC 01 · LÀM MỀM",
     name: "Dầu dưỡng tóc",
+    description:
+      "Bắt đầu routine bằng dầu dưỡng để làm mềm tóc và chuẩn bị mái tóc cho các bước chăm sóc tiếp theo.",
     image: "/dutoc.png",
     alt: "Dầu dưỡng tóc All About Hair",
-    className: "showcase-oil",
-    y: [-28, 28, -28],
-    rotate: [7, 2, -5],
+    imageClass: "showcase-product-tall",
   },
   {
-    name: "Dầu xả Bond Complex",
-    image: "/dx.png",
-    alt: "Dầu xả Bond Complex All About Hair",
-    className: "showcase-conditioner",
-    y: [24, -35, 24],
-    rotate: [-5, 1, 7],
-  },
-  {
+    eyebrow: "BƯỚC 02 · LÀM SẠCH",
     name: "Tẩy tế bào chết da đầu",
+    description:
+      "Massage nhẹ nhàng để làm sạch da đầu, giúp loại bỏ cặn bẩn và mang lại cảm giác thông thoáng.",
     image: "/ttbc.png",
     alt: "Tẩy tế bào chết da đầu All About Hair",
-    className: "showcase-scrub",
-    y: [-30, 20, -30],
-    rotate: [-4, 3, 8],
+    imageClass: "showcase-product-wide",
   },
   {
+    eyebrow: "BƯỚC 03 · GỘI SẠCH",
+    name: "Dầu gội Scalp Care",
+    description:
+      "Làm sạch tóc và da đầu với dầu gội Scalp Care, bước nền tảng trong routine chăm sóc tóc.",
+    image: "/dg.png",
+    alt: "Dầu gội Scalp Care All About Hair",
+    imageClass: "showcase-product-tall",
+  },
+  {
+    eyebrow: "BƯỚC 04 · DƯỠNG MƯỢT",
+    name: "Dầu xả Bond Complex",
+    description:
+      "Dùng dầu xả trên thân và ngọn tóc để bổ sung độ mềm mượt sau khi gội.",
+    image: "/dx.png",
+    alt: "Dầu xả Bond Complex All About Hair",
+    imageClass: "showcase-product-tall",
+  },
+  {
+    eyebrow: "BƯỚC 05 · DƯỠNG CHUYÊN SÂU",
     name: "Xịt dưỡng Biotin",
+    description:
+      "Hoàn thiện routine bằng xịt dưỡng Biotin tiện lợi, đồng hành cùng mái tóc trong nhịp sống hằng ngày.",
     image: "/xbotic.png",
     alt: "Xịt dưỡng Biotin All About Hair",
-    className: "showcase-biotin",
-    y: [35, -25, 35],
-    rotate: [8, 2, -6],
+    imageClass: "showcase-product-tall",
   },
 ];
 
-function FloatingProduct({ product, progress }) {
-  const shouldReduceMotion = useReducedMotion();
-  const y = useTransform(progress, [0, 0.5, 1], shouldReduceMotion ? [0, 0, 0] : product.y);
-  const rotate = useTransform(
-    progress,
-    [0, 0.5, 1],
-    shouldReduceMotion ? [0, 0, 0] : product.rotate,
-  );
-
-  return (
-    <motion.figure className={`showcase-product ${product.className}`} style={{ y, rotate }}>
-      <img src={product.image} alt={product.alt} loading="lazy" />
-      <figcaption>{product.name}</figcaption>
-    </motion.figure>
-  );
-}
-
 export default function ProductShowcase() {
-  const sectionRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
+  const [activeStep, setActiveStep] = useState(0);
+  const stepRefs = useRef([]);
+  const shouldReduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleStep = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((first, second) => second.intersectionRatio - first.intersectionRatio)[0];
+
+        if (visibleStep) {
+          setActiveStep(Number(visibleStep.target.dataset.stepIndex));
+        }
+      },
+      {
+        rootMargin: "-35% 0px -40% 0px",
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+      },
+    );
+
+    stepRefs.current.forEach((step) => {
+      if (step) observer.observe(step);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const activeProduct = steps[activeStep];
 
   return (
-    <section className="product-showcase" ref={sectionRef}>
+    <section className="product-showcase" aria-labelledby="product-showcase-title">
+      <div className="product-showcase-heading">
+        <p className="story-eyebrow">ALL ABOUT HAIR · TRICHOLOGY</p>
+        <h2 id="product-showcase-title">Routine chăm sóc tóc toàn diện</h2>
+        <p>Cuộn xuống để khám phá từng bước chăm sóc cùng All About Hair.</p>
+      </div>
+
       <div className="product-showcase-layout">
-        <div className="product-showcase-copy">
-          <p className="story-eyebrow">ALL ABOUT HAIR</p>
-          <h2>Chăm sóc tóc, bắt đầu từ da đầu</h2>
-          <p>
-            Khám phá bộ sản phẩm thuần chay được phát triển theo nền tảng
-            Trichology, đồng hành cùng bạn trong từng bước chăm sóc tóc.
-          </p>
-          <Link className="btn btn-primary" to="/#products">
-            Khám phá sản phẩm
-          </Link>
-        </div>
-        <div className="product-showcase-stage" aria-label="Bộ sản phẩm All About Hair">
+        <div className="product-showcase-stage" aria-live="polite">
           <span className="showcase-orbit showcase-orbit-one" aria-hidden="true" />
           <span className="showcase-orbit showcase-orbit-two" aria-hidden="true" />
-          {products.map((product) => (
-            <FloatingProduct
-              product={product}
-              progress={scrollYProgress}
-              key={product.name}
-            />
+          <AnimatePresence mode="wait">
+            <motion.figure
+              className={`showcase-product ${activeProduct.imageClass}`}
+              key={activeProduct.image}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 20, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={shouldReduceMotion ? undefined : { opacity: 0, y: -16, scale: 0.97 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.35, ease: "easeOut" }}
+            >
+              <img src={activeProduct.image} alt={activeProduct.alt} />
+              <figcaption>{activeProduct.name}</figcaption>
+            </motion.figure>
+          </AnimatePresence>
+          <span className="product-showcase-step-count">
+            {String(activeStep + 1).padStart(2, "0")} / {String(steps.length).padStart(2, "0")}
+          </span>
+        </div>
+
+        <div className="product-showcase-steps">
+          {steps.map((step, index) => (
+            <article
+              className={`product-showcase-step${activeStep === index ? " is-active" : ""}`}
+              data-step-index={index}
+              key={step.name}
+              ref={(element) => {
+                stepRefs.current[index] = element;
+              }}
+              aria-current={activeStep === index ? "step" : undefined}
+            >
+              <p className="story-eyebrow">{step.eyebrow}</p>
+              <h3>{step.name}</h3>
+              <p>{step.description}</p>
+            </article>
           ))}
+          <Link className="btn btn-primary product-showcase-cta" to="/#products">
+            Khám phá sản phẩm
+          </Link>
         </div>
       </div>
     </section>
