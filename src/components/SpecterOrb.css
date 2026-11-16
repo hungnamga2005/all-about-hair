@@ -1,0 +1,23 @@
+/* ==========================================================================
+   React Bits — SpecterOrb Component Styles
+   An ethereal, atmospheric WebGL2 shader orb with swirling brand colors,
+   light trails, dynamic cursor reaching, and click pulses.
+   ========================================================================== */
+
+.specter-orb-container {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: auto;
+}
+
+.specter-orb-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+}

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KÉN — AAH Scrunchies Studio | Storytelling</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#0a0a0b',
+                        charcoal: '#141416',
+                        silkBurgundy: '#6B1D2F',
+                        champagne: '#E0C097',
+                        ivory: '#f4f1ea',
+                        warmGray: '#8E8C8A'
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0a0a0b;
+            color: #f4f1ea;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E0C097;
+            border-radius: 14px;
+        }
+
+        /* Glassmorphism & High-End Card Styles */
+        .glass-nav {
+            background: rgba(10, 10, 11, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(224, 192, 151, 0.12);
+        }
+
+        .glass-card {
+            background: rgba(20, 20, 22, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Smooth Scroll Reveal Class */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Subtle Image Hover & Shimmer */
+        .img-hover-box {
+            overflow: hidden;
+            position: relative;
+        }
+        .img-hover-box img {
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+        }
+        .img-hover-box:hover img {
+            transform: scale(1.03);
+            filter: brightness(1.05);
+        }
+
+        /* Luxury CTA Glow */
+        .btn-luxury {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        .btn-luxury::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transform: rotate(30deg) translateY(-100%);
+            transition: transform 0.8s ease;
+        }
+        .btn-luxury:hover::after {
+            transform: rotate(30deg) translateY(100%);
+        }
+    </style>
+</head>
+<body class="selection:bg-silkBurgundy selection:text-ivory">
+
+    <!-- Scroll Progress Line -->
+    <div id="scrollProgress" class="fixed top-0 left-0 h-[2px] bg-gradient-to-r from-silkBurgundy via-champagne to-ivory z-50 transition-all duration-150" style="width: 0%"></div>
+
+    <!-- FLOATING NAVIGATION -->
+    <nav class="fixed top-0 left-0 w-full z-40 glass-nav py-5 px-6 md:px-12 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <a href="#" class="font-serif tracking-[0.35em] text-2xl font-semibold text-ivory hover:text-champagne transition-colors">KÉN</a>
+            <span class="text-[9px] uppercase tracking-widest text-champagne border-l border-white/20 pl-3 hidden sm:inline-block">AAH SCRUNCHIES STUDIO</span>
+        </div>
+
+        <div class="hidden md:flex space-x-8 text-[11px] tracking-[0.25em] uppercase font-light text-ivory/70">
+            <a href="#section1" class="hover:text-champagne transition-colors">01. Lời Hứa</a>
+            <a href="#section2" class="hover:text-champagne transition-colors">02. Triết Lý</a>
+            <a href="#section3" class="hover:text-champagne transition-colors">03. Giá Trị</a>
+            <a href="#section4" class="hover:text-champagne transition-colors">04. Trải Nghiệm</a>
+            <a href="#section5" class="hover:text-champagne transition-colors">05. Ứng Dụng</a>
+            <a href="#section6" class="hover:text-champagne transition-colors">06. Trọn Vẹn</a>
+        </div>
+
+        <a href="#section6" class="btn-luxury text-xs uppercase tracking-widest bg-gradient-to-r from-silkBurgundy to-silkBurgundy/80 hover:from-silkBurgundy/90 text-ivory px-6 py-2.5 rounded-full border border-champagne/30 shadow-lg hover:shadow-silkBurgundy/30">
+            Khám Phá
+        </a>
+    </nav>
+
+    <!-- SECTION 1: MỞ ĐẦU – LỜI HỨA TỪ SỰ NÂNG NIU -->
+    <section id="section1" class="min-h-screen pt-32 pb-24 px-6 flex items-center relative border-b border-white/5">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Text Content -->
+            <div class="lg:col-span-6 space-y-8 reveal">
+                <div class="inline-block px-3 py-1 rounded-[14px] border border-champagne/30 bg-champagne/5 text-[10px] uppercase tracking-[0.25em] text-champagne">
+                    01 • Mở Đầu
+                </div>
+                
+                <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-ivory leading-tight">
+                    Lời Hứa Từ <br>
+                    <span class="italic text-champagne font-normal">Sự Nâng Niu</span>
+                </h1>
+
+                <div class="w-16 h-[1px] bg-champagne/40"></div>
+
+                <p class="text-ivory/80 text-sm md:text-base font-light leading-relaxed">
+                    Mỗi chiếc scrunchies của KÉN ra đời không chỉ để buộc tóc, mà như một hiện vật trưng bày của sự nâng niu. Giống như chiếc kén bảo bọc lấy những gì tinh tế nhất trước khi hóa thành cánh bướm, KÉN ôm lấy mái tóc bạn bằng sự mềm mại tuyệt đối của lụa thượng hạng.
+                </p>
+
+                <div class="pt-2">
+                    <a href="#section2" class="inline-flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-champagne hover:text-ivory transition-colors">
+                        <span>Tiếp tục câu chuyện</span>
+                        <i class="fa-solid fa-arrow-down-long"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Visual Image 7 -->
+            <div class="lg:col-span-6 reveal">
+                <div class="img-hover-box rounded-[14px] border border-white/10 shadow-2xl">
+                    <img src="https://lh3.googleusercontent.com/ggms/AF1QipN38jCq2lR8E674J6k5U_lvh97wV_qZqH5O1W0L=s1024" 
+                         alt="Bộ sưu tập Ciel, Nacre, Lagon" 
+                         class="w-full h-auto object-cover rounded-[14px]"
+                         onerror="this.onerror=null; this.src='https://placehold.co/800x1000/141416/E0C097?text=KEN+Section+1+Collection';">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- SECTION 2: TRIẾT LÝ THIẾT KẾ – "NHÌN GẦN THÊM MỘT CHÚT" -->
+    <section id="section2" class="min-h-screen py-24 px-6 flex items-center bg-charcoal/40 border-b border-white/5 relative">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Visual Image 1 -->
+            <div class="lg:col-span-6 order-2 lg:order-1 reveal">
+                <div class="img-hover-box rounded-[14px] border border-white/10 shadow-2xl">
+                    <img src="https://lh3.googleusercontent.com/ggms/AF1QipM-pXq7856s_8aO4h2Kx-qjZ82q9dF1aW7aR2B6=s1024" 
+                         alt="Cận cảnh chi tiết lụa đỏ rượu" 
+                         class="w-full h-auto object-cover rounded-[14px]"
+                         onerror="this.onerror=null; this.src='https://placehold.co/800x1000/141416/E0C097?text=KEN+Section+2+Details';">
+                </div>
+            </div>
+
+            <!-- Right Text Content -->
+            <div class="lg:col-span-6 order-1 lg:order-2 space-y-8 reveal">
+                <div class="inline-block px-3 py-1 rounded-[14px] border border-champagne/30 bg-champagne/5 text-[10px] uppercase tracking-[0.25em] text-champagne">
+                    02 • Triết Lý Thiết Kế
+                </div>
+
+                <h2 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-ivory leading-tight">
+                    "Nhìn Gần Thêm <br>
+                    <span class="italic text-champagne font-normal">Một Chút"</span>
+                </h2>
+
+                <div class="w-16 h-[1px] bg-silkBurgundy"></div>
+
+                <p class="text-ivory/80 text-sm md:text-base font-light leading-relaxed">
+                    Đẳng cấp nằm ở khoảng cách gần. KÉN chọn cách chinh phục bạn từ những đường kim mũi chỉ tỉ mỉ nhất, nhãn mác tinh tế, đến bề mặt lụa bóng mượt không gây ma sát. Nhìn gần thêm một chút, để thấy tâm huyết dồn nén trong từng chi tiết nhỏ.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- SECTION 3: GIÁ TRỊ CỐT LÕI – CHẤT LIỆU KIẾN TẠO CẢM XÚC -->
+    <section id="section3" class="min-h-screen py-24 px-6 flex items-center border-b border-white/5 relative">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Text Content -->
+            <div class="lg:col-span-6 space-y-8 reveal">
+                <div class="inline-block px-3 py-1 rounded-[14px] border border-champagne/30 bg-champagne/5 text-[10px] uppercase tracking-[0.25em] text-champagne">
+                    03 • Giá Trị Cốt Lõi
+                </div>
+
+                <h2 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-ivory leading-tight">
+                    Material Shapes <br>
+                    <span class="italic text-champagne font-normal">Emotion</span>
+                </h2>
+
+                <div class="w-16 h-[1px] bg-champagne/40"></div>
+
+                <p class="text-ivory/80 text-sm md:text-base font-light leading-relaxed">
+                    Chất liệu định hình cảm xúc. Sự mượt mà của lụa và satin không chỉ chạm vào mái tóc mà còn chạm đến sự thư thái trong tâm hồn người phụ nữ hiện đại. Một chút óng ả, một chút kiêu kỳ nhưng vô cùng dịu êm.
+                </p>
+            </div>
+
+            <!-- Right Visual Image 3 -->
+            <div class="lg:col-span-6 reveal">
+                <div class="img-hover-box rounded-[14px] border border-white/10 shadow-2xl">
+                    <img src="https://lh3.googleusercontent.com/ggms/AF1QipMj1N5b-V-R_x7J-c2R0gV1940e4sS3P0X0V4v4=s1024" 
+                         alt="Material Shapes Emotion" 
+                         class="w-full h-auto object-cover rounded-[14px]"
+                         onerror="this.onerror=null; this.src='https://placehold.co/800x1000/141416/E0C097?text=KEN+Section+3+Material';">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- SECTION 4: TRẢI NGHIỆM THỰC TẾ – CHỈ MỘT PHÚT CHO MÁI TÓC -->
+    <section id="section4" class="min-h-screen py-24 px-6 flex items-center bg-charcoal/40 border-b border-white/5 relative">
+        <div class="max-w-6xl mx-auto space-y-16">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-2xl mx-auto space-y-4 reveal">
+                <div class="inline-block px-3 py-1 rounded-[14px] border border-champagne/30 bg-champagne/5 text-[10px] uppercase tracking-[0.25em] text-champagne">
+                    04 • Trải Nghiệm Thực Tế
+                </div>
+                <h2 class="font-serif text-4xl sm:text-5xl font-light text-ivory">Chỉ Một Phút Cho Mái Tóc</h2>
+                <div class="w-12 h-[1px] bg-champagne/40 mx-auto"></div>
+                <p class="text-ivory/80 text-sm md:text-base font-light leading-relaxed">
+                    Chỉ một phút biến hóa cho mái tóc. Cùng một bộ trang phục, cùng một kiểu tóc, nhưng thần thái thay đổi hoàn toàn chỉ với một điểm nhấn từ KÉN. Nhanh gọn, thanh lịch và luôn sẵn sàng để bạn tỏa sáng ở bất cứ đâu.
+                </p>
+            </div>
+
+            <!-- Two Images Showcase (Image 5 & 6) -->
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <!-- Image 5 (Just One Minute) -->
+                <div class="reveal">
+                    <div class="img-hover-box rounded-[14px] border border-white/10 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/ggms/AF1QipO3-N1-9R5X_h21z43j8tS2T046E97E2K8U844O=s1024" 
+                             alt="Just One Minute For Your Hair" 
+                             class="w-full h-auto object-cover rounded-[14px]"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x1000/141416/E0C097?text=KEN+Section+4+One+Minute';">
+                    </div>
+                </div>
+
+                <!-- Image 6 (Before/After) -->
+                <div class="reveal" style="transition-delay: 150ms;">
+                    <div class="img-hover-box rounded-[14px] border border-white/10 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/ggms/AF1QipNEg1Hh-oZ51r4x7B6J1t3X8U7T12q1X2x-x144=s1024" 
+                             alt="Before After Change" 
+                             class="w-full h-auto object-cover rounded-[14px]"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x1000/141416/E0C097?text=KEN+Section+4+Before+After';">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- SECTION 5: TÍNH ỨNG DỤNG ĐA DẠNG – NẺO ĐƯỜNG CỦA SỰ THANH LỊCH -->
+    <section id="section5" class="min-h-screen py-24 px-6 flex items-center border-b border-white/5 relative">
+        <div class="max-w-6xl mx-auto space-y-16">
+            
+            <!-- Text Header -->
+            <div class="text-center max-w-3xl mx-auto space-y-4 reveal">
+                <div class="inline-block px-3 py-1 rounded-[14px] border border-champagne/30 bg-champagne/5 text-[10px] uppercase tracking-[0.25em] text-champagne">
+                    05 • Tính Ứng Dụng Đa Dạng
+                </div>
+                <h2 class="font-serif text-4xl sm:text-5xl font-light text-ivory">Nẻo Đường Của Sự Thanh Lịch</h2>
+                <div class="w-12 h-[1px] bg-silkBurgundy mx-auto"></div>
+                <p class="text-ivory/80 text-sm md:text-base font-light leading-relaxed">
+                    Dù là sắc trắng Moonstone tinh khôi trên nền tóc tối hay ánh sao huyền ảo của Starry Night, KÉN hòa quyện tự nhiên vào phong cách sống của bạn. Và để vẻ đẹp ấy bền lâu, KÉN cũng cần được chăm chút đúng cách – bởi 'KÉN đẹp nhất khi được chăm sóc đúng cách'.
+                </p>
+            </div>
+
+            <!-- Two Images Grid (Image 2 & 4) -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Image 2 (Moonstone) -->
+                <div class="reveal">
+                    <div class="img-hover-box rounded-[14px] border border-white/10 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/ggms/AF1QipO4L906u70yM_S1Y_l7w871h1z2y3x4w5v6u7t8=s1024" 
+                             alt="Moonstone on Dark Hair" 
+                             class="w-full h-auto object-cover rounded-[14px]"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x1000/141416/E0C097?text=KEN+Moonstone';">
+                    </div>
+                </div>
+
+                <!-- Image 4 (Starry Night / Care) -->
+                <div class="reveal" style="transition-delay: 150ms;">
+                    <div class="img-hover-box rounded-[14px] border border-white/10 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/ggms/AF1QipP_L3l4Z4_v3X2X0q_3w3r2v1u0t9s8r7q6p5o4=s1024" 
+                             alt="Chăm sóc KÉN đúng cách" 
+                             class="w-full h-auto object-cover rounded-[14px]"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x1000/141416/E0C097?text=KEN+Care+Guide';">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- SECTION 6: LỜI KẾT & ĐÓNG GÓI TRẢI NGHIỆM -->
+    <section id="section6" class="min-h-screen py-24 px-6 flex items-center bg-charcoal/40 relative">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Visual Image 8 -->
+            <div class="lg:col-span-6 reveal">
+                <div class="img-hover-box rounded-[14px] border border-white/10 shadow-2xl">
+                    <img src="https://lh3.googleusercontent.com/ggms/AF1QipM7Y8z9a0b1c2d3e4f5g6h7i8j9k0l1m2n3o4p5=s1024" 
+                         alt="Hộp quà niêm phong logo KÉN" 
+                         class="w-full h-auto object-cover rounded-[14px]"
+                         onerror="this.onerror=null; this.src='https://placehold.co/800x800/141416/E0C097?text=KEN+Gift+Box';">
+                </div>
+            </div>
+
+            <!-- Right Text Content & Call To Action -->
+            <div class="lg:col-span-6 space-y-8 reveal">
+                <div class="inline-block px-3 py-1 rounded-[14px] border border-champagne/30 bg-champagne/5 text-[10px] uppercase tracking-[0.25em] text-champagne">
+                    06 • Lời Kết
+                </div>
+
+                <h2 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-ivory leading-tight">
+                    Đóng Gói <br>
+                    <span class="italic text-champagne font-normal">Trải Nghiệm</span>
+                </h2>
+
+                <div class="w-16 h-[1px] bg-champagne/40"></div>
+
+                <p class="text-ivory/80 text-sm md:text-base font-light leading-relaxed">
+                    Mỗi đơn hàng từ KÉN được trao đi như một hộp quà trân quý gửi đến chính bạn hoặc người thương. Khép lại một hành trình làm đẹp từ những điều nguyên bản nhất.
+                </p>
+
+                <div class="pt-4">
+                    <button onclick="showOrderToast()" class="btn-luxury inline-block w-full sm:w-auto text-center bg-gradient-to-r from-silkBurgundy via-silkBurgundy/90 to-silkBurgundy text-ivory px-10 py-5 rounded-full font-medium text-xs tracking-[0.25em] uppercase border border-champagne/40 shadow-2xl shadow-silkBurgundy/40 hover:scale-[1.02]">
+                        Khám Phá Bộ Sưu Tập KÉN
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- TOAST NOTIFICATION (NO ALERT) -->
+    <div id="toastNotification" class="fixed bottom-8 right-8 z-50 bg-charcoal text-ivory px-6 py-4 rounded-[14px] shadow-2xl border border-champagne/40 flex items-center space-x-4 transform translate-y-24 opacity-0 transition-all duration-500">
+        <i class="fa-solid fa-sparkles text-champagne text-lg"></i>
+        <span class="text-xs font-medium tracking-wide">Chào mừng bạn đến với Bộ Sưu Tập KÉN Studio!</span>
+    </div>
+
+    <!-- JAVASCRIPT ANIMATION LOGIC -->
+    <script>
+        // Scroll Progress Bar Update
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("scrollProgress").style.width = scrolled + "%";
+        });
+
+        // Intersection Observer for Smooth Scroll Reveal
+        const observerOptions = {
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Toast Trigger
+        function showOrderToast() {
+            const toast = document.getElementById('toastNotification');
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>

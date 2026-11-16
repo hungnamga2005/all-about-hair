@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-const steps = [
+export const steps = [
   {
     eyebrow: "BƯỚC 01 · LÀM MỀM",
     name: "Dầu dưỡng tóc",
@@ -50,7 +50,11 @@ const steps = [
   },
 ];
 
-export default function ProductShowcase() {
+export default function ProductShowcase({
+  Description,
+  ctaTo = "/#products",
+  ctaLabel = "Khám phá sản phẩm",
+}) {
   const [activeStep, setActiveStep] = useState(0);
   const stepRefs = useRef([]);
   const shouldReduceMotion = useReducedMotion();
@@ -124,11 +128,11 @@ export default function ProductShowcase() {
             >
               <p className="story-eyebrow">{step.eyebrow}</p>
               <h3>{step.name}</h3>
-              <p>{step.description}</p>
+              {Description ? <Description text={step.description} /> : <p>{step.description}</p>}
             </article>
           ))}
-          <Link className="btn btn-primary product-showcase-cta" to="/#products">
-            Khám phá sản phẩm
+          <Link className="btn btn-primary product-showcase-cta" to={ctaTo}>
+            {ctaLabel}
           </Link>
         </div>
       </div>
