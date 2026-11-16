@@ -1,12 +1,10 @@
 import { motion } from "framer-motion";
 import { Check, Zap } from "lucide-react";
-import { Link } from "react-router-dom";
 import AnimatedText from "../components/AnimatedText.jsx";
+import KenStorytelling from "../components/KenStorytelling.jsx";
 import ProductShowcase from "../components/ProductShowcase.jsx";
 import ScrollReveal from "../components/ScrollReveal.jsx";
 import TextLoop from "../components/TextLoop.jsx";
-
-const hairStoryImage = "https://allabouthairvietnam.com/img_data/images/image.png";
 
 const products = [
   {
@@ -67,68 +65,6 @@ function ProductSection() {
   );
 }
 
-function KenSection() {
-  return (
-    <ScrollReveal
-      as={motion.section}
-      className="ken-section"
-      aria-label="Kén scrunchie"
-    >
-      <div className="ken-section-inner">
-        <div className="ken-section-content">
-          <ScrollReveal as={motion.div} className="ken-details" delay={0.12}>
-            <p className="story-eyebrow">CÙNG OUTFIT · CÙNG KIỂU TÓC</p>
-            <h3>Khác một chi tiết, thêm một thần thái.</h3>
-            <p>
-              Kén đồng hành cùng bạn trong những khoảnh khắc thường ngày, để
-              mỗi kiểu tóc mang một dấu ấn riêng.
-            </p>
-          </ScrollReveal>
-          <ScrollReveal as={motion.figure} className="ken-product">
-            <img src="/k1.png" alt="Scrunchie Kén màu đen" loading="lazy" />
-            <img className="ken-corner-image" src="/k2.png" alt="" aria-hidden="true" />
-          </ScrollReveal>
-        </div>
-
-        <ScrollReveal as={motion.figure} className="ken-comparison" delay={0.08}>
-          <img
-            src="/compare.jpg"
-            alt="So sánh kiểu tóc trước và sau khi tạo điểm nhấn với scrunchie Kén"
-            loading="lazy"
-          />
-        </ScrollReveal>
-      </div>
-    </ScrollReveal>
-  );
-}
-
-function StorySection() {
-  return (
-    <ScrollReveal as={motion.section} id="story" className="story-section">
-      <div className="story-container">
-        <ScrollReveal as={motion.div} className="story-image" direction="left">
-          <img src={hairStoryImage} alt="Chăm sóc tóc cùng All About Hair" loading="lazy" />
-        </ScrollReveal>
-        <ScrollReveal as={motion.div} className="story-content" delay={0.12}>
-          <p className="story-eyebrow">ALL ABOUT HAIR</p>
-          <h2>CHUYỆN TÓC</h2>
-          <AnimatedText>
-            Góc nhỏ dành cho những ai muốn hiểu và chăm sóc mái tóc của mình theo
-            cách tự nhiên nhất. Ở đây có những chia sẻ gần gũi về tóc, da đầu và
-            thói quen chăm sóc mỗi ngày - từ kiến thức dễ hiểu đến những gợi ý
-            nhỏ giúp bạn lắng nghe mái tóc mình tốt hơn. AAH mong rằng, qua từng
-            bài viết, việc chăm sóc tóc sẽ trở thành một phần nhẹ nhàng và vừa
-            vặn trong nhịp sống hằng ngày của bạn.
-          </AnimatedText>
-          <Link className="btn btn-primary" to="/stories">
-            Xem ngay
-          </Link>
-        </ScrollReveal>
-      </div>
-    </ScrollReveal>
-  );
-}
-
 function BookingSection() {
   function handleSubmit(event) {
     event.preventDefault();
@@ -179,19 +115,18 @@ export default function HomePage() {
     <>
       <ScrollReveal as={motion.section} className="hero">
         <ScrollReveal as={motion.div} className="hero-content" delay={0.08}>
-        <AnimatedText as={motion.h1}>Khoa học Trichology</AnimatedText>
+          <AnimatedText as={motion.h1}>Khoa học Trichology</AnimatedText>
           <AnimatedText>
             Khởi nguồn mái tóc khỏe đẹp bền vững từ một da đầu khỏe mạnh. Trải
             nghiệm giải pháp thuần chay từ thiên nhiên.
           </AnimatedText>
-          <a href="/#products" className="btn btn-primary">Khám Phá Ngay</a>
+          <a href="/home#products" className="btn btn-primary">Khám Phá Ngay</a>
         </ScrollReveal>
         <img src="/hero-banner.png" alt="Bộ sản phẩm chăm sóc tóc All About Hair" />
       </ScrollReveal>
 
       <TextLoop />
       <ProductShowcase />
-      <KenSection />
 
       <ScrollReveal as={motion.section} id="combo" className="flashsale" aria-label="Ưu đãi đặc quyền">
         <ScrollReveal as={motion.div} className="flashsale-header">
@@ -206,7 +141,7 @@ export default function HomePage() {
       </ScrollReveal>
 
       <ProductSection />
-      <StorySection />
+      <KenStorytelling />
       <BookingSection />
     </>
   );

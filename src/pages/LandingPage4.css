@@ -1,0 +1,598 @@
+/* Theme tokens follow LandingPage2 */
+.lp4 {
+  --brand: rgb(234, 219, 245);
+  --wisteria: #c497d5;
+  --lavender: #aa6fce;
+  --violet: #8d42c3;
+  --lilac: #7c41b3;
+  --rebecca: #6f42a5;
+  --indigo: #53378a;
+  --ink: #292131;
+  --muted: #74657c;
+  --ken-bg: #111013;
+  --ken-panel: #1b181d;
+  --ken-ivory: #f3eee6;
+  --ken-gold: #c7a773;
+  --rule: rgba(83, 55, 138, 0.18);
+  --brand-purple: #7B2CBF;
+  --red-accent: #FF3158;
+  --red-wine: #6B1D2F;
+  --red-marron: #6B1D2F;
+  --red-silk: #7D2333;
+
+  position: relative;
+  background: var(--brand);
+  color: var(--ink);
+  font-family: "Fira Sans", Arial, sans-serif;
+  line-height: 1.65;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+.lp4 *,
+.lp4 *::before,
+.lp4 *::after { box-sizing: border-box; }
+
+.lp4 h2,
+.lp4 h3 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.lp4-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 24px;
+  padding: 0 clamp(20px, 5vw, 76px);
+}
+
+.lp4-kicker {
+  display: block;
+  color: var(--rebecca);
+  font-size: 0.67rem;
+  font-weight: 600;
+  letter-spacing: 0.19em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.lp4-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Header (LandingPage2 style): HOME → | ALL ABOUT HAIR | CONTACT → */
+.lp4-header {
+  position: fixed;
+  z-index: 1000;
+  inset: 0 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  min-height: 70px;
+  padding: 0 clamp(20px, 5vw, 76px);
+  color: var(--indigo);
+  background: rgba(234, 219, 245, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(83, 55, 138, 0.13);
+  box-shadow: none;
+  transition: color 350ms ease, background-color 350ms ease, border-color 350ms ease;
+}
+.lp4-header a { color: inherit; text-decoration: none; }
+.lp4-header-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+}
+.lp4-header-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms ease;
+}
+.lp4-header-link:hover::after,
+.lp4-header-link:focus-visible::after { transform: scaleX(1); }
+.lp4-header-contact { justify-self: end; }
+.lp4-header-brand {
+  font-family: "Playfair Display", Georgi2, serif;
+  font-size: 1rem;
+  letter-spacing: 0.11em;
+  white-space: nowrap;
+}
+.lp4-header.is-dark {
+  color: var(--ken-ivory);
+  background: rgba(17, 16, 19, 0.78);
+  border-color: rgba(199, 167, 115, 0.2);
+  /* Blur is invisible on this dark fill but re-blurs the animated orb every frame. */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.lp4-progress {
+  position: fixed;
+  z-index: 1001;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--lavender);
+  transform-origin: left center;
+}
+
+/* Entry: white circle opens behind the brand name */
+.lp4-entry {
+  position: relative;
+  z-index: 5;
+  height: 170vh;
+  background: var(--brand);
+}
+.lp4-entry .lp4-sticky {
+  overflow: visible;
+}
+.lp4-entry-circle {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  will-change: clip-path;
+}
+.lp4-entry-brand {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 clamp(20px, 5vw, 76px) 60px;
+  text-align: center;
+}
+.lp4-entry-loop {
+  position: absolute;
+  bottom: -35px;
+  left: 0;
+  width: 100%;
+  z-index: 15;
+  overflow: hidden;
+  pointer-events: none;
+}
+.lp4-entry-loop .rb-text-loop {
+  pointer-events: auto;
+}
+.lp4-entry-brand .lp4-hand { width: min(100%, 1160px); color: var(--indigo); }
+.lp4-entry-lead { max-width: 560px; margin: 0; color: var(--muted); }
+/* Chapter heading — Centered & Full Screen */
+.lp4-chapter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 18px;
+  padding: 60px clamp(20px, 5vw, 76px);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.lp4-chapter.is-fullscreen {
+  min-height: 100vh;
+  padding-top: 100px;
+  padding-bottom: 80px;
+}
+
+.lp4-chapter-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  gap: 8px;
+  border-top: none;
+  padding-top: 0;
+}
+
+.lp4-chapter-meta .lp4-kicker {
+  width: 100%;
+  text-align: center;
+}
+
+.lp4-chapter-num {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(3.2rem, 7vw, 5.5rem);
+  line-height: 1;
+  color: var(--wisteria);
+  margin: 0;
+}
+
+.lp4-chapter h2,
+.lp4-headline {
+  position: relative;
+  color: var(--indigo);
+  font-size: clamp(2.5rem, 5.5vw, 5.2rem);
+  line-height: 1.15;
+  text-align: center;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  perspective: 1000px;
+}
+
+.lp4-headline-track {
+  display: inline-block;
+  position: relative;
+}
+
+.lp4-headline-word {
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: baseline;
+  position: relative;
+}
+
+.lp4-headline-char {
+  display: inline-block;
+  color: var(--indigo);
+  transform-origin: 50% 100%;
+  will-change: transform, opacity, filter;
+  transition: transform 0.25s ease;
+}
+
+.lp4-chapter:hover .lp4-headline-char {
+  transform: translateY(-2px);
+}
+
+.lp4-headline-space {
+  display: inline-block;
+}
+
+.lp4-chapter-lead {
+  max-width: 640px;
+  margin: 0 auto;
+  color: var(--muted);
+  text-align: center;
+  font-size: clamp(1rem, 1.35vw, 1.18rem);
+  line-height: 1.7;
+}
+
+.lp4-routine { background: #fff; position: sticky; z-index: 1; }
+
+/* Gradient wipes (right → left, then bottom → top) */
+.lp4-wipe { height: 200vh; background: #fff; }
+.lp4-wipe.is-reverse { height: 150vh; background: var(--ken-bg); }
+/* Sits over the routine's final screen; transparent and click-through so the CTA stays usable. */
+.lp4-wipe.is-overlap {
+  position: relative;
+  z-index: 2;
+  margin-top: -100vh;
+  background: transparent;
+  pointer-events: none;
+}
+.lp4-wipe-layer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 150%;
+  background: linear-gradient(
+    to right,
+    rgba(196, 151, 213, 0) 0%,
+    var(--wisteria) 8%,
+    var(--lavender) 15%,
+    var(--violet) 21%,
+    var(--indigo) 27%,
+    var(--ken-bg) 33.4%,
+    var(--ken-bg) 100%
+  );
+}
+.is-reverse .lp4-wipe-layer {
+  top: auto;
+  left: auto;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 150%;
+  background: linear-gradient(
+    to bottom,
+    rgba(234, 219, 245, 0) 0%,
+    var(--indigo) 8%,
+    var(--lilac) 15%,
+    var(--lavender) 21%,
+    var(--wisteria) 27%,
+    var(--brand) 33.4%,
+    var(--brand) 100%
+  );
+}
+
+/* Kén — dark theme, horizontal scroll */
+/* Overlaps the wipe's last screen; invisible and click-through until pinned (.is-shown). */
+.lp4-ken {
+  position: relative;
+  z-index: 3;
+  margin-top: -100vh;
+  color: var(--ken-ivory);
+  pointer-events: none;
+}
+.lp4-ken .lp4-sticky { background: transparent; }
+/* Small floating orbs; behind the track so they never cover the copy. */
+.lp4-ken-orbs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.lp4-ken-orbs * { pointer-events: none !important; }
+.lp4-ken-orb { position: absolute; will-change: transform; }
+.lp4-ken .lp4-ken-track { opacity: 0; }
+.lp4-ken.is-shown { pointer-events: auto; }
+.lp4-ken.is-shown .lp4-sticky { background: var(--ken-bg); }
+.lp4-ken.is-shown .lp4-ken-orbs { opacity: 1; }
+/* No opacity transitions on these big layers: fading over the live WebGL orb caused the entry hitch. */
+.lp4-ken.is-shown .lp4-ken-track { opacity: 1; }
+.lp4-ken .lp4-kicker { color: var(--ken-gold); }
+.lp4-ken-track { position: relative; z-index: 1; display: flex; height: 100%; will-change: transform; }
+.lp4-ken-panel {
+  flex: 0 0 100vw;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 24px;
+  align-items: center;
+  padding: 90px clamp(20px, 5vw, 76px) 60px;
+  border-right: 1px solid rgba(199, 167, 115, 0.15);
+}
+.lp4-ken-intro {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  row-gap: 24px;
+}
+.lp4-ken-intro .lp4-kicker { text-align: center; }
+.lp4-ken-word {
+  width: clamp(340px, 64vw, 820px);
+  max-width: 92vw;
+  max-height: 42vh;
+  margin: 0 auto;
+  color: var(--ken-gold);
+  filter: drop-shadow(0 6px 30px rgba(199, 167, 115, 0.32));
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+.lp4-ken-word:hover {
+  transform: scale(1.02);
+  filter: drop-shadow(0 8px 38px rgba(199, 167, 115, 0.5));
+}
+.lp4-ken-lead { max-width: 680px; margin: 0 auto; text-align: center; }
+.lp4-ken-lead h2 { font-size: clamp(2.2rem, 4vw, 3.8rem); margin-bottom: 16px; text-align: center; }
+.lp4-ken-lead em { color: var(--ken-gold); font-style: italic; }
+.lp4-ken-handwrite {
+  position: relative;
+  display: inline-block;
+  color: var(--ken-gold);
+}
+.lp4-ken-underline {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  overflow: visible;
+  pointer-events: none;
+}
+.lp4-ken-lead p {
+  margin: 0;
+  color: rgba(243, 238, 230, 0.85);
+  text-align: center;
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  line-height: 1.7;
+}
+.lp4-ken-figure { grid-column: 1 / 7; margin: 0; }
+.lp4-ken-figure img {
+  display: block;
+  width: 100%;
+  height: min(62vh, 620px);
+  object-fit: cover;
+  background: var(--ken-panel);
+}
+.lp4-ken-figure figcaption {
+  margin-top: 10px;
+  color: var(--ken-gold);
+  font-size: 0.67rem;
+  letter-spacing: 0.19em;
+}
+.lp4-ken-note { grid-column: 8 / 13; }
+.is-text-only .lp4-ken-note { grid-column: 3 / 11; }
+.is-text-only .lp4-ken-note h3 { font-size: clamp(2.4rem, 5vw, 4.5rem); }
+.lp4-num {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.1rem;
+  color: var(--ken-gold);
+}
+.lp4-ken-note h3 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin: 14px 0 16px; }
+.lp4-ken-note p { margin: 0; color: rgba(243, 238, 230, 0.8); }
+/* Form — Scalp Center Chapter 03 (Centered) */
+.lp4-form-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px clamp(20px, 4vw, 60px) 100px;
+  box-sizing: border-box;
+}
+.lp4-form-section .lp4-chapter {
+  padding: 0 0 32px;
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  gap: 18px;
+  align-items: center;
+  text-align: center;
+}
+.lp4-form-section .lp4-chapter-meta {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+  gap: 8px;
+}
+.lp4-form-section .lp4-chapter-meta .lp4-kicker {
+  width: 100%;
+  text-align: center;
+}
+.lp4-form-section .lp4-chapter-num {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  line-height: 1;
+  color: var(--wisteria);
+  margin: 0;
+}
+.lp4-form-section .lp4-headline {
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  font-size: clamp(2.5rem, 4.8vw, 4.2rem);
+}
+.lp4-form-section .lp4-chapter-lead {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: clamp(0.98rem, 1.25vw, 1.12rem);
+  line-height: 1.65;
+}
+.lp4-form-section .lp4-grid {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: left;
+}
+.lp4-features { grid-column: 1 / 6; list-style: none; padding: 0; margin: 20px 0 0; }
+.lp4-features li { border-top: 1px solid var(--rule); padding: 14px 0; color: var(--indigo); }
+.lp4-features li::before { content: "— "; color: var(--lavender); }
+.lp4-form {
+  grid-column: 7 / 13;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 20px;
+  padding: 36px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--rule);
+}
+.lp4-form label { display: flex; flex-direction: column; gap: 8px; }
+.lp4-form label span {
+  color: var(--rebecca);
+  font-size: 0.67rem;
+  font-weight: 600;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+}
+.lp4-form input,
+.lp4-form select {
+  font: inherit;
+  font-size: 1.05rem;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--indigo);
+  border-radius: 0;
+  padding: 10px 0;
+  outline: none;
+}
+.lp4-form input:focus,
+.lp4-form select:focus { border-color: var(--violet); box-shadow: 0 1px 0 var(--violet); }
+.lp4-form button {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--indigo);
+  border: 0;
+  padding: 16px 30px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+.lp4-form button:hover { background: var(--violet); transform: translateX(4px); }
+.lp4-form button:focus-visible { outline: 2px solid var(--indigo); outline-offset: 4px; }
+
+/* Handwriting + typing */
+.lp4-hand { display: block; width: 100%; height: auto; overflow: visible; }
+.lp4-hand text {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 400;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-dasharray: 1800;
+  stroke-linejoin: round;
+}
+.lp4-typing { line-height: 1.65; }
+.lp4-typing-rest { visibility: hidden; }
+.lp4-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin: 0 1px -0.12em;
+  background: currentColor;
+  animation: lp4-blink 0.8s steps(1) infinite;
+}
+@keyframes lp4-blink { 50% { opacity: 0; } }
+
+@media (max-width: 800px) {
+  .lp4-grid,
+  .lp4-ken-panel { column-gap: 12px; padding-left: 16px; padding-right: 16px; }
+  .lp4-header { padding: 0 16px; min-height: 60px; }
+  .lp4-header-brand { font-size: 0.78rem; letter-spacing: 0.06em; }
+  .lp4-chapter-meta,
+  .lp4-chapter h2,
+  .lp4-chapter-lead,
+  .lp4-ken-word,
+  .lp4-ken-lead,
+  .lp4-ken-figure,
+  .lp4-ken-note,
+  .is-text-only .lp4-ken-note,
+  .lp4-features,
+  .lp4-form { grid-column: 1 / -1; }
+  .lp4-ken-panel { align-content: center; row-gap: 20px; }
+  .lp4-ken-figure img { height: 38vh; }
+  .lp4-ken-orb:nth-child(n + 4) { display: none; } /* fewer orbs on phones */
+  .lp4-form { padding: 24px 20px; }
+}

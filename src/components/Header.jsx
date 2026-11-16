@@ -1,9 +1,9 @@
-import { Search, CircleUserRound, ShoppingBag } from "lucide-react";
+import { Search, CircleUserRound } from "lucide-react";
 
 const navigation = [
-  { label: "Sản Phẩm", href: "/#products" },
-  { label: "Combo Toàn Diện", href: "/#combo" },
-  { label: "Scalp Center", href: "/#scalp-center", highlighted: true },
+  { label: "Sản Phẩm", href: "/home#products" },
+  { label: "Combo Toàn Diện", href: "/home#combo" },
+  { label: "Scalp Center", href: "/home#scalp-center", highlighted: true },
   { label: "Chuyện Tóc", href: "/stories" },
 ];
 
@@ -25,15 +25,15 @@ export default function Header() {
         </ul>
       </nav>
       <div className="header-icons" aria-label="Tài khoản và giỏ hàng">
-        <button type="button" aria-label="Tìm kiếm">
-          <Search aria-hidden="true" />
-        </button>
-        <button type="button" aria-label="Tài khoản">
-          <CircleUserRound aria-hidden="true" />
-        </button>
-        <button type="button" aria-label="Giỏ hàng">
-          <ShoppingBag aria-hidden="true" />
-        </button>
+        <a className="header-cart-link" href="#">
+          Tìm kiếm
+        </a>
+        <a className="header-cart-link" href="#">
+          Tài khoản
+        </a>
+        <a className="header-cart-link" href="#">
+          Giỏ hàng
+        </a>
       </div>
     </header>
   );

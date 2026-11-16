@@ -1,0 +1,26 @@
+.rb-text-loop {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.rb-text-loop--draggable {
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.rb-text-loop-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.rb-text-loop-text {
+  user-select: none;
+  font-family: inherit;
+}
+
+.rb-text-loop-measure {
+  visibility: hidden;
+  pointer-events: none;
+}
