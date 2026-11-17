@@ -1,10 +1,24 @@
+.ps-wrap {
+  background: #e6dcef;
+}
+
+/* brand-purple dots and arrows on the light background */
+.ps-wrap .slick-dots li button,
+.ps-wrap .slick-dots li.slick-active button {
+  background: #7b2cbf;
+}
+
+.ps-wrap .slick-prev,
+.ps-wrap .slick-next {
+  color: #7b2cbf;
+}
+
 .ps-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 64px;
   padding: 80px 7vw;
-  background: #e6dcef;
 }
 
 .ps-kicker {
