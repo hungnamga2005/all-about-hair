@@ -1,4 +1,7 @@
-import { Search, CircleUserRound } from "lucide-react";
+import finalLogo from "../../assets/finallogo.png";
+import { useState } from "react";
+import { useCart } from "./CartDrawer.jsx";
+import LoginModal from "./LoginModal.jsx";
 
 const navigation = [
   { label: "Sản Phẩm", href: "/home#products" },
@@ -8,11 +11,10 @@ const navigation = [
 ];
 
 export default function Header() {
+  const { count, openCart } = useCart();
+  const [loginOpen, setLoginOpen] = useState(false);
   return (
     <header>
-      <a className="logo" href="/" aria-label="All About Hair - Trang chủ">
-        ALL ABOUT HAIR
-      </a>
       <nav aria-label="Điều hướng chính">
         <ul>
           {navigation.map(({ label, href, highlighted }) => (
@@ -24,17 +26,35 @@ export default function Header() {
           ))}
         </ul>
       </nav>
+      <a className="logo" href="/" aria-label="All About Hair - Trang chủ">
+        <img src={finalLogo} alt="All About Hair" className="logo-img" />
+      </a>
       <div className="header-icons" aria-label="Tài khoản và giỏ hàng">
         <a className="header-cart-link" href="#">
           Tìm kiếm
         </a>
-        <a className="header-cart-link" href="#">
+        <a
+          className="header-cart-link"
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            setLoginOpen(true);
+          }}
+        >
           Tài khoản
         </a>
-        <a className="header-cart-link" href="#">
-          Giỏ hàng
+        <a
+          className="header-cart-link"
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            openCart();
+          }}
+        >
+          Giỏ hàng{count > 0 && ` (${count})`}
         </a>
       </div>
+      <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} />
     </header>
   );
 }

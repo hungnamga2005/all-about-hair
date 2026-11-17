@@ -1,4 +1,5 @@
 import { ArrowUpRight, Instagram, Music2 } from "lucide-react";
+import brandLogo from "../../assets/logo_1.png";
 
 const navigationLinks = [
   { label: "Trang chủ", href: "/" },
@@ -26,8 +27,7 @@ export default function Footer() {
           </a>
 
           <h2 className="site-footer__headline">
-            <span>All About Hair</span>
-            <span className="site-footer__headline-muted">All About Hair</span>
+            <img src={brandLogo} alt="All About Hair" className="site-footer__logo" />
           </h2>
 
           <div className="site-footer__lifecycle" aria-label="Quy trình chăm sóc tóc">

@@ -91,7 +91,7 @@
   align-items: center;
   gap: 8px;
   width: fit-content;
-  font-size: 0.68rem;
+  font-size: calc(0.68rem + 4px);
   font-weight: 500;
   letter-spacing: 0.16em;
 }
@@ -111,8 +111,8 @@
 .lp4-header-link:focus-visible::after { transform: scaleX(1); }
 .lp4-header-contact { justify-self: end; }
 .lp4-header-brand {
-  font-family: "Playfair Display", Georgi2, serif;
-  font-size: 1rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: calc(1rem + 4px);
   letter-spacing: 0.11em;
   white-space: nowrap;
 }
@@ -213,6 +213,9 @@
   width: 100%;
   text-align: center;
 }
+/* "Chapter 0X — …" labels (ChapterHead + Ken intro) */
+.lp4-chapter-meta .lp4-kicker,
+.lp4-ken-intro .lp4-kicker { font-size: 20px; }
 
 .lp4-chapter-num {
   display: block;
@@ -279,7 +282,9 @@
 
 /* Gradient wipes (right → left, then bottom → top) */
 .lp4-wipe { height: 200vh; background: #fff; }
-.lp4-wipe.is-reverse { height: 150vh; background: var(--ken-bg); }
+/* Above Ken (z 3) and every later section so the ScentLabo ribbon sits on top; header stays above (z 1000). */
+/* Reverse wipe: reduced from 150vh to 125vh (scroll duration cut in half: 50vh → 25vh) reducing the dark & light phases by half while preserving the smooth gradient transition. */
+.lp4-wipe.is-reverse { height: 125vh; background: var(--ken-bg); position: relative; z-index: 10; }
 /* Sits over the routine's final screen; transparent and click-through so the CTA stays usable. */
 .lp4-wipe.is-overlap {
   position: relative;
@@ -304,6 +309,28 @@
     var(--ken-bg) 33.4%,
     var(--ken-bg) 100%
   );
+}
+/* ScentLabo ribbon: outside the sticky's clip, so its diagonal spills over Ken above and ScentLabo below. */
+/* Both 142vw wide (≈ √2 · 100vw) so the two ribbons render at the same scale. */
+.lp4-wipe-loop {
+  position: absolute;
+  width: 142vw;
+  z-index: 1;
+}
+/* Ribbon 1 scrolls with the section's dark background, under the gradient layer, so it ends wherever the dark ends.
+   Left end at the left edge near the top; rotating about it sends the rest down-right. */
+.lp4-wipe-loop.is-diagonal {
+  z-index: auto;
+  top: 12vh;
+  left: 0;
+  transform-origin: left center;
+  transform: translateY(-50%) rotate(15deg);
+}
+/* Inside the reverse layer (150% of the screen): 66.67% = middle of the screen once the layer settles. */
+.lp4-wipe-loop.is-flat {
+  top: 66.67%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .is-reverse .lp4-wipe-layer {
   top: auto;
@@ -332,8 +359,13 @@
   margin-top: -100vh;
   color: var(--ken-ivory);
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1) 1.2s;
+} 
+.lp4-ken .lp4-sticky {
+  background: transparent;
+  transition: background 1.2s cubic-bezier(0.22, 1, 0.36, 1) 1.2s;
 }
-.lp4-ken .lp4-sticky { background: transparent; }
 /* Small floating orbs; behind the track so they never cover the copy. */
 .lp4-ken-orbs {
   position: absolute;
@@ -341,14 +373,20 @@
   z-index: 0;
   opacity: 0;
   pointer-events: none;
+  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1) 1.2s;
 }
 .lp4-ken-orbs * { pointer-events: none !important; }
 .lp4-ken-orb { position: absolute; will-change: transform; }
-.lp4-ken .lp4-ken-track { opacity: 0; }
-.lp4-ken.is-shown { pointer-events: auto; }
+.lp4-ken .lp4-ken-track {
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1) 1.2s;
+}
+.lp4-ken.is-shown {
+  pointer-events: auto;
+  opacity: 1;
+}
 .lp4-ken.is-shown .lp4-sticky { background: var(--ken-bg); }
 .lp4-ken.is-shown .lp4-ken-orbs { opacity: 1; }
-/* No opacity transitions on these big layers: fading over the live WebGL orb caused the entry hitch. */
 .lp4-ken.is-shown .lp4-ken-track { opacity: 1; }
 .lp4-ken .lp4-kicker { color: var(--ken-gold); }
 .lp4-ken-track { position: relative; z-index: 1; display: flex; height: 100%; will-change: transform; }
@@ -377,30 +415,14 @@
   max-height: 42vh;
   margin: 0 auto;
   color: var(--ken-gold);
-  filter: drop-shadow(0 6px 30px rgba(199, 167, 115, 0.32));
-  transition: transform 0.4s ease, filter 0.4s ease;
+  transition: transform 0.4s ease;
 }
 .lp4-ken-word:hover {
   transform: scale(1.02);
-  filter: drop-shadow(0 8px 38px rgba(199, 167, 115, 0.5));
 }
 .lp4-ken-lead { max-width: 680px; margin: 0 auto; text-align: center; }
 .lp4-ken-lead h2 { font-size: clamp(2.2rem, 4vw, 3.8rem); margin-bottom: 16px; text-align: center; }
 .lp4-ken-lead em { color: var(--ken-gold); font-style: italic; }
-.lp4-ken-handwrite {
-  position: relative;
-  display: inline-block;
-  color: var(--ken-gold);
-}
-.lp4-ken-underline {
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 100%;
-  height: 12px;
-  overflow: visible;
-  pointer-events: none;
-}
 .lp4-ken-lead p {
   margin: 0;
   color: rgba(243, 238, 230, 0.85);
@@ -416,6 +438,37 @@
   object-fit: cover;
   background: var(--ken-panel);
 }
+.lp4-ken-gallery .depth-carousel { height: min(62vh, 620px); }
+.lp4-ken-gallery .depth-carousel__img { height: 100%; } /* beat .lp4-ken-figure img */
+.lp4-ken-accordion-wrap .accordion-gallery {
+  height: min(62vh, 620px);
+  width: 100%;
+}
+.lp4-ken-accordion-wrap .ag-panel__media img {
+  height: 100% !important; /* beat .lp4-ken-figure img */
+  width: 100% !important;
+  object-fit: cover !important;
+}
+.lp4-ken-accordion .ag-panel {
+  border: 1px solid rgba(199, 167, 115, 0.2);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+.lp4-ken-accordion .ag-panel:hover,
+.lp4-ken-accordion .ag-panel.ag-panel--active {
+  border-color: rgba(199, 167, 115, 0.6);
+  box-shadow: 0 14px 34px -10px rgba(0, 0, 0, 0.7);
+}
+.lp4-ken-accordion .ag-panel__bar {
+  background: var(--ken-gold);
+  box-shadow: 0 0 10px rgba(199, 167, 115, 0.7);
+}
+.lp4-ken-accordion .ag-panel__text {
+  color: var(--ken-ivory);
+  font-family: inherit;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  font-size: clamp(0.9rem, 1.2vw, 1.15rem);
+}
 .lp4-ken-figure figcaption {
   margin-top: 10px;
   color: var(--ken-gold);
@@ -424,13 +477,30 @@
 }
 .lp4-ken-note { grid-column: 8 / 13; }
 .is-text-only .lp4-ken-note { grid-column: 3 / 11; }
-.is-text-only .lp4-ken-note h3 { font-size: clamp(2.4rem, 5vw, 4.5rem); }
-.lp4-num {
+.is-text-only .lp4-ken-note h3,
+.is-text-only .lp4-ken-title { font-size: clamp(2.4rem, 5vw, 4.5rem); }
+.lp4-ken-note h3,
+.lp4-ken-title {
   font-family: "Playfair Display", Georgia, serif;
-  font-size: 1.1rem;
-  color: var(--ken-gold);
+  font-size: clamp(2rem, 3.2vw, 2.85rem);
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 14px 0 18px;
+  color: var(--ken-ivory);
+  letter-spacing: -0.01em;
 }
-.lp4-ken-note h3 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin: 14px 0 16px; }
+.lp4-ken-title-main {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 400;
+  color: var(--ken-ivory);
+}
+.lp4-ken-title-accent {
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--ken-gold);
+  letter-spacing: -0.01em;
+}
 .lp4-ken-note p { margin: 0; color: rgba(243, 238, 230, 0.8); }
 /* Form — Scalp Center Chapter 03 (Centered) */
 .lp4-form-section {
@@ -497,18 +567,32 @@
   padding: 0;
   text-align: left;
 }
-.lp4-features { grid-column: 1 / 6; list-style: none; padding: 0; margin: 20px 0 0; }
-.lp4-features li { border-top: 1px solid var(--rule); padding: 14px 0; color: var(--indigo); }
-.lp4-features li::before { content: "— "; color: var(--lavender); }
+/* Dreams — Chapter 05: AAH team wave ribbon (full-bleed) over the ScentLabo carousel. */
+.lp4-dreams { overflow-x: clip; }
+.lp4-dreams-line { width: 100vw; }
+
+/* ScentLabo — Chapter 03, shares the centered chapter styles of .lp4-form-section */
+.lp4-scent-gallery { width: 100%; height: min(70vh, 640px); margin: 8px auto 0; }
+.lp4-stamp {
+  grid-column: 4 / 10; /* centered: 6 of 12 columns */
+  margin-top: 20px;
+  filter: drop-shadow(0 10px 24px rgba(83, 55, 138, 0.18));
+}
+/* Perforated postage-stamp edges (from the AAH stamp SVG): fixed-size holes, count adapts to the form size */
 .lp4-form {
-  grid-column: 7 / 13;
+  --r: 10px; /* hole radius */
+  --p: 48px; /* hole spacing */
   display: flex;
   flex-direction: column;
   gap: 24px;
-  margin-top: 20px;
-  padding: 36px;
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid var(--rule);
+  padding: 44px;
+  background: #fff;
+  mask:
+    radial-gradient(circle var(--r) at 50% 0, #0000 98%, #000) top / var(--p) var(--r) round no-repeat,
+    radial-gradient(circle var(--r) at 50% 100%, #0000 98%, #000) bottom / var(--p) var(--r) round no-repeat,
+    radial-gradient(circle var(--r) at 0 50%, #0000 98%, #000) left / var(--r) var(--p) no-repeat round,
+    radial-gradient(circle var(--r) at 100% 50%, #0000 98%, #000) right / var(--r) var(--p) no-repeat round,
+    linear-gradient(#000 0 0) center / calc(100% - 2 * var(--r)) calc(100% - 2 * var(--r)) no-repeat;
 }
 .lp4-form label { display: flex; flex-direction: column; gap: 8px; }
 .lp4-form label span {
@@ -580,7 +664,7 @@
   .lp4-grid,
   .lp4-ken-panel { column-gap: 12px; padding-left: 16px; padding-right: 16px; }
   .lp4-header { padding: 0 16px; min-height: 60px; }
-  .lp4-header-brand { font-size: 0.78rem; letter-spacing: 0.06em; }
+  .lp4-header-brand { font-size: calc(0.78rem + 4px); letter-spacing: 0.06em; }
   .lp4-chapter-meta,
   .lp4-chapter h2,
   .lp4-chapter-lead,
@@ -589,10 +673,31 @@
   .lp4-ken-figure,
   .lp4-ken-note,
   .is-text-only .lp4-ken-note,
-  .lp4-features,
-  .lp4-form { grid-column: 1 / -1; }
+  .lp4-stamp { grid-column: 1 / -1; }
   .lp4-ken-panel { align-content: center; row-gap: 20px; }
   .lp4-ken-figure img { height: 38vh; }
+  .lp4-ken-accordion-wrap .accordion-gallery { height: 38vh !important; }
   .lp4-ken-orb:nth-child(n + 4) { display: none; } /* fewer orbs on phones */
-  .lp4-form { padding: 24px 20px; }
+  .lp4-form { padding: 32px 26px; }
+  /* Tighter vertical rhythm: chapters size to content instead of a full centered screen. */
+  .lp4-form-section { min-height: 0; padding: 56px 16px 64px; }
+  .lp4-form-section .lp4-chapter { padding-bottom: 20px; }
+  .lp4-chapter-meta .lp4-kicker,
+  .lp4-ken-intro .lp4-kicker { font-size: 14px; }
+  .lp4-scent-gallery { height: min(60vh, 460px); } /* item height is 60% of this box, so less dead space */
+  /* Text ribbons draw on a 1200-unit viewBox scaled to their width: at 100vw the text shrinks to ~8px.
+     364vw ≈ 1420px renders them ~1.2× design size; parents clip the overflow. margin-left = -(width - 100) / 2 centers it. */
+  .lp4-dreams-line,
+  .lp4-wipe-loop { width: 364vw; }
+  .lp4-entry-loop .rb-text-loop { width: 364vw; margin-left: -132vw; }
+}
+
+@media (max-width: 520px) {
+  .lp4-ken-accordion-wrap .accordion-gallery {
+    flex-direction: row !important;
+    height: 38vh !important;
+  }
+  .lp4-ken-accordion-wrap .accordion-gallery .ag-panel {
+    min-height: 0 !important;
+  }
 }
