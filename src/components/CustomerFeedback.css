@@ -1,0 +1,508 @@
+/* Customer Feedback Section — Postage Stamp Gallery */
+.lp4-feedback-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 96px clamp(20px, 4vw, 60px) 120px;
+  box-sizing: border-box;
+  position: relative;
+  overflow-x: clip;
+  background: var(--brand, rgb(234, 219, 245));
+  /* Performance: defer rendering until scrolled near viewport */
+  content-visibility: auto;
+  contain-intrinsic-size: 1000px;
+}
+
+.lp4-feedback-section .lp4-chapter {
+  padding: 0 0 32px;
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  gap: 18px;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.lp4-feedback-section .lp4-chapter-meta {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+  gap: 8px;
+}
+
+.lp4-feedback-section .lp4-kicker {
+  width: 100%;
+  text-align: center;
+  color: var(--rebecca, #6f42a5);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* H1 Headline matches theme purple/indigo identical to all other Chapter headings */
+.lp4-feedback-section .lp4-headline,
+.lp4-feedback-section h1,
+.lp4-feedback-section h2 {
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2.4rem, 4.8vw, 4.2rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  color: var(--indigo, #53378a);
+}
+
+.lp4-feedback-section .lp4-chapter-lead {
+  width: 100%;
+  max-width: 660px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: clamp(0.98rem, 1.25vw, 1.12rem);
+  line-height: 1.68;
+  color: var(--ink, #292131);
+  opacity: 0.88;
+}
+
+/* The desk where stamp cards are scattered */
+.lp4-feedback-desk {
+  width: 100%;
+  max-width: 1140px;
+  margin: 32px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: clamp(20px, 3.2vw, 42px);
+  row-gap: clamp(28px, 4vw, 52px);
+  padding: 20px clamp(12px, 2.5vw, 36px);
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Column wrapper for framer-motion scroll reveal */
+.lp4-feedback-card-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Card wrapper carries the drop-shadow and GPU accelerated transform */
+.lp4-feedback-card-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  filter: drop-shadow(0 10px 24px rgba(83, 55, 138, 0.18));
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  z-index: var(--z, 1);
+  transform: translate3d(var(--ox, 0px), var(--oy, 0px), 0) rotate(var(--rot, 0deg));
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+  contain: layout style;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.lp4-feedback-card-wrapper:hover,
+.lp4-feedback-card-wrapper:focus-visible {
+  transform: translate3d(var(--ox, 0px), calc(var(--oy, 0px) - 12px), 0) rotate(calc(var(--rot, 0deg) * 0.15)) scale(1.06);
+  z-index: 45;
+  filter: drop-shadow(0 22px 38px rgba(83, 55, 138, 0.28));
+  outline: none;
+}
+
+.lp4-feedback-card-wrapper:active {
+  transform: translate3d(var(--ox, 0px), calc(var(--oy, 0px) - 4px), 0) scale(0.98);
+}
+
+/* Postage stamp frame with perforated edges (stemps pattern from booking form) */
+.lp4-feedback-stamp {
+  --r: 7px; /* hole radius */
+  --p: 28px; /* hole spacing */
+  position: relative;
+  background: #ffffff;
+  padding: 14px 14px 18px 14px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0;
+  -webkit-mask:
+    radial-gradient(circle var(--r) at 50% 0, #0000 98%, #000) top / var(--p) var(--r) round no-repeat,
+    radial-gradient(circle var(--r) at 50% 100%, #0000 98%, #000) bottom / var(--p) var(--r) round no-repeat,
+    radial-gradient(circle var(--r) at 0 50%, #0000 98%, #000) left / var(--r) var(--p) no-repeat round,
+    radial-gradient(circle var(--r) at 100% 50%, #0000 98%, #000) right / var(--r) var(--p) no-repeat round,
+    linear-gradient(#000 0 0) center / calc(100% - 2 * var(--r)) calc(100% - 2 * var(--r)) no-repeat;
+  mask:
+    radial-gradient(circle var(--r) at 50% 0, #0000 98%, #000) top / var(--p) var(--r) round no-repeat,
+    radial-gradient(circle var(--r) at 50% 100%, #0000 98%, #000) bottom / var(--p) var(--r) round no-repeat,
+    radial-gradient(circle var(--r) at 0 50%, #0000 98%, #000) left / var(--r) var(--p) no-repeat round,
+    radial-gradient(circle var(--r) at 100% 50%, #0000 98%, #000) right / var(--r) var(--p) no-repeat round,
+    linear-gradient(#000 0 0) center / calc(100% - 2 * var(--r)) calc(100% - 2 * var(--r)) no-repeat;
+  transform: translateZ(0);
+}
+
+/* Inner photo frame holding the customer feedback image */
+.lp4-feedback-photo-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #f5f1eb;
+  border: 1px solid rgba(83, 55, 138, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lp4-feedback-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  contain: paint;
+}
+
+.lp4-feedback-card-wrapper:hover .lp4-feedback-photo {
+  transform: scale(1.04);
+}
+
+/* Postal cancellation mark overlay */
+.lp4-feedback-postmark {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 76px;
+  height: 76px;
+  pointer-events: none;
+  opacity: 0.62;
+  mix-blend-mode: multiply;
+  z-index: 3;
+  color: var(--rebecca, #6f42a5);
+}
+
+/* Stamp footer: denomination & brand inscription */
+.lp4-feedback-stamp-footer {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+  box-sizing: border-box;
+}
+
+.lp4-feedback-stamp-tag {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rebecca, #6f42a5);
+}
+
+.lp4-feedback-stamp-denom {
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--violet, #8d42c3);
+  letter-spacing: 0.04em;
+}
+
+/* Quick zoom indicator hint on hover */
+.lp4-feedback-zoom-hint {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(41, 33, 49, 0.72);
+  color: #fff;
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all 0.25s ease;
+  pointer-events: none;
+  backdrop-filter: blur(4px);
+}
+
+.lp4-feedback-card-wrapper:hover .lp4-feedback-zoom-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fullscreen Lightbox Modal */
+.lp4-feedback-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 14, 24, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 36px);
+  box-sizing: border-box;
+}
+
+.lp4-feedback-modal-dialog {
+  position: relative;
+  max-width: 580px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lp4-feedback-modal-stamp-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  filter: drop-shadow(0 28px 56px rgba(0, 0, 0, 0.55));
+}
+
+.lp4-feedback-modal-stamp {
+  --r: 9px;
+  --p: 34px;
+  background: #ffffff;
+  padding: clamp(16px, 3.5vw, 24px) clamp(16px, 3.5vw, 24px) clamp(20px, 4vw, 28px) clamp(16px, 3.5vw, 24px);
+  box-sizing: border-box;
+  -webkit-mask:
+    radial-gradient(circle var(--r) at 50% 0, #0000 98%, #000) top / var(--p) var(--r) round no-repeat,
+    radial-gradient(circle var(--r) at 50% 100%, #0000 98%, #000) bottom / var(--p) var(--r) round no-repeat,
+    radial-gradient(circle var(--r) at 0 50%, #0000 98%, #000) left / var(--r) var(--p) no-repeat round,
+    radial-gradient(circle var(--r) at 100% 50%, #0000 98%, #000) right / var(--r) var(--p) no-repeat round,
+    linear-gradient(#000 0 0) center / calc(100% - 2 * var(--r)) calc(100% - 2 * var(--r)) no-repeat;
+  mask:
+    radial-gradient(circle var(--r) at 50% 0, #0000 98%, #000) top / var(--p) var(--r) round no-repeat,
+    radial-gradient(circle var(--r) at 50% 100%, #0000 98%, #000) bottom / var(--p) var(--r) round no-repeat,
+    radial-gradient(circle var(--r) at 0 50%, #0000 98%, #000) left / var(--r) var(--p) no-repeat round,
+    radial-gradient(circle var(--r) at 100% 50%, #0000 98%, #000) right / var(--r) var(--p) no-repeat round,
+    linear-gradient(#000 0 0) center / calc(100% - 2 * var(--r)) calc(100% - 2 * var(--r)) no-repeat;
+}
+
+.lp4-feedback-modal-photo-frame {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #f7f3ee;
+  border: 1px solid rgba(83, 55, 138, 0.15);
+}
+
+.lp4-feedback-modal-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.lp4-feedback-modal-footer {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+}
+
+.lp4-feedback-modal-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+
+.lp4-feedback-modal-client {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--ink, #292131);
+}
+
+.lp4-feedback-modal-service {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rebecca, #6f42a5);
+}
+
+.lp4-feedback-modal-stars {
+  color: #f59e0b;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+}
+
+/* Modal close and navigation buttons */
+.lp4-feedback-modal-close {
+  position: absolute;
+  top: -48px;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lp4-feedback-modal-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+}
+
+.lp4-feedback-modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.lp4-feedback-modal-nav:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.lp4-feedback-modal-prev {
+  left: -58px;
+}
+
+.lp4-feedback-modal-next {
+  right: -58px;
+}
+
+/* Mobile & Tablet Responsive Queries */
+@media (max-width: 992px) {
+  .lp4-feedback-desk {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 36px;
+    column-gap: 24px;
+  }
+  .lp4-feedback-modal-prev {
+    left: -16px;
+  }
+  .lp4-feedback-modal-next {
+    right: -16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .lp4-feedback-section {
+    padding: 72px 16px 96px;
+    min-height: auto;
+  }
+
+  .lp4-feedback-section .lp4-chapter {
+    padding: 0 0 24px;
+    gap: 14px;
+  }
+
+  .lp4-feedback-desk {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 14px;
+    row-gap: 22px;
+    padding: 12px 6px;
+    margin-top: 16px;
+  }
+
+  /* Reduce rotation and eliminate offsets purely via CSS without JS */
+  .lp4-feedback-card-wrapper {
+    transform: translate3d(0, 0, 0) rotate(calc(var(--rot, 0deg) * 0.25));
+  }
+
+  .lp4-feedback-card-wrapper:hover {
+    transform: translate3d(0, -6px, 0) rotate(0deg) scale(1.03);
+  }
+
+  .lp4-feedback-stamp {
+    --r: 6px;
+    --p: 24px;
+    padding: 10px 10px 14px 10px;
+  }
+
+  .lp4-feedback-postmark {
+    width: 58px;
+    height: 58px;
+    top: -4px;
+    right: -4px;
+  }
+
+  .lp4-feedback-stamp-footer {
+    margin-top: 8px;
+    padding: 0 2px;
+  }
+
+  .lp4-feedback-stamp-tag {
+    font-size: 0.56rem;
+    letter-spacing: 0.1em;
+  }
+
+  .lp4-feedback-stamp-denom {
+    font-size: 0.7rem;
+  }
+
+  .lp4-feedback-modal-nav {
+    top: auto;
+    bottom: -60px;
+    transform: none;
+  }
+
+  .lp4-feedback-modal-nav:hover {
+    transform: scale(1.08);
+  }
+
+  .lp4-feedback-modal-prev {
+    left: calc(50% - 54px);
+  }
+
+  .lp4-feedback-modal-next {
+    right: calc(50% - 54px);
+  }
+}
+
+@media (max-width: 440px) {
+  .lp4-feedback-desk {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin: 16px auto 0;
+    row-gap: 24px;
+    padding: 8px 4px;
+  }
+
+  .lp4-feedback-stamp {
+    --r: 6px;
+    --p: 26px;
+    padding: 12px 12px 16px 12px;
+  }
+}

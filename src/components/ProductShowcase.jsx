@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export const steps = [
   {
-    eyebrow: "BƯỚC 01 · LÀM MỀM",
+    eyebrow: "LÀM MỀM",
     name: "Dầu dưỡng tóc",
     description:
       "Bắt đầu routine bằng dầu dưỡng để làm mềm tóc và chuẩn bị mái tóc cho các bước chăm sóc tiếp theo.",
@@ -13,7 +13,7 @@ export const steps = [
     imageClass: "showcase-product-tall",
   },
   {
-    eyebrow: "BƯỚC 02 · LÀM SẠCH",
+    eyebrow: "LÀM SẠCH",
     name: "Tẩy tế bào chết da đầu",
     description:
       "Massage nhẹ nhàng để làm sạch da đầu, giúp loại bỏ cặn bẩn và mang lại cảm giác thông thoáng.",
@@ -22,7 +22,7 @@ export const steps = [
     imageClass: "showcase-product-wide",
   },
   {
-    eyebrow: "BƯỚC 03 · GỘI SẠCH",
+    eyebrow: "GỘI SẠCH",
     name: "Dầu gội Scalp Care",
     description:
       "Làm sạch tóc và da đầu với dầu gội Scalp Care, bước nền tảng trong routine chăm sóc tóc.",
@@ -31,7 +31,7 @@ export const steps = [
     imageClass: "showcase-product-tall",
   },
   {
-    eyebrow: "BƯỚC 04 · DƯỠNG MƯỢT",
+    eyebrow: "DƯỠNG MƯỢT",
     name: "Dầu xả Bond Complex",
     description:
       "Dùng dầu xả trên thân và ngọn tóc để bổ sung độ mềm mượt sau khi gội.",
@@ -40,7 +40,7 @@ export const steps = [
     imageClass: "showcase-product-tall",
   },
   {
-    eyebrow: "BƯỚC 05 · DƯỠNG CHUYÊN SÂU",
+    eyebrow: "DƯỠNG CHUYÊN SÂU",
     name: "Xịt dưỡng Biotin",
     description:
       "Hoàn thiện routine bằng xịt dưỡng Biotin tiện lợi, đồng hành cùng mái tóc trong nhịp sống hằng ngày.",
@@ -60,27 +60,44 @@ export default function ProductShowcase({
   const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleStep = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((first, second) => second.intersectionRatio - first.intersectionRatio)[0];
+    let ticking = false;
 
-        if (visibleStep) {
-          setActiveStep(Number(visibleStep.target.dataset.stepIndex));
+    const updateActiveStep = () => {
+      // Trục trigger canh theo tầm mắt và tâm của khung ảnh sticky bên trái (~44% viewport)
+      const triggerY = window.innerHeight * 0.44;
+      let closestIndex = 0;
+      let minDistance = Infinity;
+
+      stepRefs.current.forEach((el, index) => {
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const stepCenter = rect.top + rect.height / 2;
+        const distance = Math.abs(stepCenter - triggerY);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIndex = index;
         }
-      },
-      {
-        rootMargin: "-35% 0px -40% 0px",
-        threshold: [0, 0.25, 0.5, 0.75, 1],
-      },
-    );
+      });
 
-    stepRefs.current.forEach((step) => {
-      if (step) observer.observe(step);
-    });
+      setActiveStep((prev) => (prev !== closestIndex ? closestIndex : prev));
+      ticking = false;
+    };
 
-    return () => observer.disconnect();
+    const handleScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateActiveStep);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
+    updateActiveStep();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, []);
 
   const activeProduct = steps[activeStep];
@@ -97,14 +114,15 @@ export default function ProductShowcase({
         <div className="product-showcase-stage" aria-live="polite">
           <span className="showcase-orbit showcase-orbit-one" aria-hidden="true" />
           <span className="showcase-orbit showcase-orbit-two" aria-hidden="true" />
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             <motion.figure
               className={`showcase-product ${activeProduct.imageClass}`}
               key={activeProduct.image}
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 20, scale: 0.96 }}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 16, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={shouldReduceMotion ? undefined : { opacity: 0, y: -16, scale: 0.97 }}
-              transition={{ duration: shouldReduceMotion ? 0 : 0.35, ease: "easeOut" }}
+              exit={shouldReduceMotion ? undefined : { opacity: 0, y: -16, scale: 0.96 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.28, ease: "easeOut" }}
+              style={{ gridArea: "1 / 1" }}
             >
               <img src={activeProduct.image} alt={activeProduct.alt} />
               <figcaption>{activeProduct.name}</figcaption>

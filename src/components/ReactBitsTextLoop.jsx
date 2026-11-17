@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import './ReactBitsTextLoop.css';
 
 const VIEW_W = 1200;
+const CX = VIEW_W / 2;
 const EDGE_PAD = 6;
 const FADE_STEPS = 8;
 const MAX_FLING = 2600;
@@ -132,7 +133,6 @@ export default function ReactBitsTextLoop({
   style = {},
   viewHeight = 200,
 }) {
-  const CX = VIEW_W / 2;
   const cy = viewHeight / 2;
   const rootRef = useRef(null);
   const svgRef = useRef(null);

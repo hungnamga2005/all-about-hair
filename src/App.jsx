@@ -3,8 +3,7 @@ import Footer from "./components/Footer.jsx";
 import Header from "./components/Header.jsx";
 import ClickSparkEffect from "./components/ClickSparkEffect.jsx";
 import HomePage from "./pages/HomePage.jsx";
-import LandingPage2 from "./pages/LandingPage2.jsx";
-import LandingPage4 from "./pages/LandingPage4.jsx";
+import LandingPage from "./pages/LandingPage.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 import StoriesPage from "./pages/StoriesPage.jsx";
 
@@ -12,11 +11,11 @@ export default function App() {
   const { pathname } = useLocation();
   const isCustomLanding =
     pathname === "/" ||
-    pathname === "/landingpage2" ||
-    pathname === "/landingpage3" ||
+    pathname === "/landingpage" ||
     pathname === "/landingpage4";
   const shouldHideFooter =
     pathname === "/" ||
+    pathname === "/landingpage" ||
     pathname === "/landingpage1" ||
     pathname === "/landingpage2" ||
     pathname === "/landingpage3" ||
@@ -28,10 +27,10 @@ export default function App() {
       {!isCustomLanding && <Header />}
       <main>
         <Routes>
-          <Route path="/" element={<LandingPage4 />} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<HomePage />} />
-          <Route path="/landingpage2" element={<LandingPage2 />} />
-          <Route path="/landingpage4" element={<LandingPage4 />} />
+          <Route path="/landingpage" element={<LandingPage />} />
+          <Route path="/landingpage4" element={<LandingPage />} />
           <Route path="/stories" element={<StoriesPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

@@ -34,7 +34,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 5%;
+    padding: 12px 5%;
     position: fixed;
     width: 100%;
     top: 0;
@@ -57,6 +57,10 @@ header.header-dark-mode .logo {
     color: #E0C097 !important;
 }
 
+header.header-dark-mode .logo-img {
+    filter: drop-shadow(0 0 10px rgba(224, 192, 151, 0.35)) brightness(1.08);
+}
+
 header.header-dark-mode nav a {
     color: rgba(244, 241, 234, 0.75) !important;
 }
@@ -70,19 +74,55 @@ header.header-dark-mode .header-icons button svg {
     color: #f4f1ea !important;
 }
 
+header nav {
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
 .logo {
-    font-family: var(--font-logo);
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    color: var(--accent-color);
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
+    line-height: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.logo:hover {
+    opacity: 0.92;
+}
+
+.logo-img {
+    height: 68px;
+    max-height: 68px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.logo:hover .logo-img {
+    transform: scale(1.05);
+}
+
+.header-icons {
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: clamp(16px, 1.8vw, 30px);
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    gap: 30px;
+    gap: clamp(16px, 1.8vw, 30px);
+    align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 nav a {
@@ -92,6 +132,7 @@ nav a {
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 nav a:hover {
@@ -160,13 +201,13 @@ header nav a:focus-visible::after,
 }
 
 .header-cart-link {
-    margin-left: 12px;
     color: var(--text-color);
     font-size: 14px;
     letter-spacing: 1px;
     text-decoration: none;
     text-transform: uppercase;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .header-cart-link:hover {
@@ -706,8 +747,10 @@ header.header-dark-mode .header-cart-link:hover {
     line-height: 1.02;
 }
 
-.site-footer__headline-muted {
-    color: #a77a4b;
+.site-footer__logo {
+    display: block;
+    width: min(100%, 520px);
+    height: auto;
 }
 
 .site-footer__lifecycle {
@@ -1103,6 +1146,7 @@ header.header-dark-mode .header-cart-link:hover {
     max-height: 82%;
     margin: 0;
     will-change: transform;
+    grid-area: 1 / 1;
 }
 
 .showcase-product img {
@@ -1280,28 +1324,48 @@ header.header-dark-mode .header-cart-link:hover {
 @media (max-width: 768px) {
     header {
         flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
         row-gap: 10px;
-        padding: 12px 5%;
+        padding: 10px 5%;
+    }
+
+    .logo {
+        order: 1;
+        flex: 0 0 auto;
+    }
+
+    .logo-img {
+        height: 57px;
+        max-height: 57px;
+    }
+
+    .header-icons {
+        order: 2;
+        flex: 0 0 auto;
+        justify-content: flex-end;
+        gap: 8px 18px;
     }
 
     header nav {
         order: 3;
         width: 100%;
+        flex: 0 0 100%;
+        justify-content: center;
     }
 
     nav ul {
         justify-content: center;
         flex-wrap: wrap;
-        gap: 10px 20px;
+        gap: 8px 18px;
     }
 
     nav a {
         font-size: 12px;
     }
 
-    .header-icons button,
-    .header-cart-link {
-        margin-left: 12px;
+    .header-icons button {
+        margin-left: 10px;
     }
 
     .story-section {
@@ -1401,13 +1465,40 @@ header.header-dark-mode .header-cart-link:hover {
 }
 
 @media (max-width: 480px) {
+    header {
+        padding: 8px 4%;
+        row-gap: 8px;
+    }
+
     .logo {
         font-size: 19px;
     }
 
-    .header-icons button,
+    .logo-img {
+        height: 50px;
+        max-height: 50px;
+    }
+
+    .header-icons {
+        gap: 6px 12px;
+    }
+
+    .header-icons button {
+        margin-left: 6px;
+        font-size: 12px;
+    }
+
     .header-cart-link {
-        margin-left: 5px;
+        font-size: 12px;
+    }
+
+    nav ul {
+        gap: 6px 12px;
+    }
+
+    nav a {
+        font-size: 11px;
+        letter-spacing: 0.5px;
     }
 
     .flashsale-header {

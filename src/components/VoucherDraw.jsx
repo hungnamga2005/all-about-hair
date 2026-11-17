@@ -8,7 +8,7 @@ import "./VoucherDraw.css";
 export const vouchers = [
   { value: "-10%", title: "Xịt dưỡng Biotin", code: "BIOTIN10" },
   { value: "-50K", title: "Tẩy tế bào chết Scalp Scrub", code: "SCRUB50" },
-  { value: "0đ", title: "Soi da đầu tại Scalp Center", code: "SCALPFREE" },
+  { value: "0đ", title: "Soi da đầu tại AAH Scalp Center", code: "SCALPFREE" },
   { value: "-15%", title: "Combo routine toàn diện", code: "ROUTINE15" },
   { value: "Freeship", title: "Miễn phí vận chuyển", code: "FREESHIP" },
 ];
