@@ -8,7 +8,7 @@ export const steps = [
     name: "Dầu dưỡng tóc",
     description:
       "Bắt đầu routine bằng dầu dưỡng để làm mềm tóc và chuẩn bị mái tóc cho các bước chăm sóc tiếp theo.",
-    image: "/dutoc.png",
+    image: "../../assets/dutoc.png",
     alt: "Dầu dưỡng tóc All About Hair",
     imageClass: "showcase-product-tall",
   },
