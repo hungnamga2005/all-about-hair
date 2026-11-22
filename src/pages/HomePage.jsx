@@ -17,7 +17,7 @@ export default function HomePage() {
           </AnimatedText>
           <a href="/home#products" className="btn btn-primary">Khám Phá Ngay</a>
         </ScrollReveal>
-        <img src="./assets/hero-banner.png" alt="Bộ sản phẩm chăm sóc tóc All About Hair" />
+        <img src="./all-about-hair/assets/hero-banner.png" alt="Bộ sản phẩm chăm sóc tóc All About Hair" />
       </ScrollReveal>
 
       <TextLoop />
