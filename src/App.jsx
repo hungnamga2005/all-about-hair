@@ -27,9 +27,9 @@ export default function App() {
       {!isCustomLanding && <Header />}
       <main>
         <Routes>
-          <Route path="/all-about-hair" element={<LandingPage />} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<HomePage />} />
-          <Route path="./stories" element={<StoriesPage />} />
+          <Route path="/stories" element={<StoriesPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
