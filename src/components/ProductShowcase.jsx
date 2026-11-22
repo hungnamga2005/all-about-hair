@@ -8,7 +8,7 @@ export const steps = [
     name: "Dầu dưỡng tóc",
     description:
       "Bắt đầu routine bằng dầu dưỡng để làm mềm tóc và chuẩn bị mái tóc cho các bước chăm sóc tiếp theo.",
-    image: "/assets/dutoc.png",
+    image: "./assets/dutoc.png",
     alt: "Dầu dưỡng tóc All About Hair",
     imageClass: "showcase-product-tall",
   },
@@ -17,7 +17,7 @@ export const steps = [
     name: "Tẩy tế bào chết da đầu",
     description:
       "Massage nhẹ nhàng để làm sạch da đầu, giúp loại bỏ cặn bẩn và mang lại cảm giác thông thoáng.",
-    image: "/ttbc.png",
+    image: "./assets/ttbc.png",
     alt: "Tẩy tế bào chết da đầu All About Hair",
     imageClass: "showcase-product-wide",
   },
@@ -26,7 +26,7 @@ export const steps = [
     name: "Dầu gội Scalp Care",
     description:
       "Làm sạch tóc và da đầu với dầu gội Scalp Care, bước nền tảng trong routine chăm sóc tóc.",
-    image: "/dg.png",
+    image: "./assets/dg.png",
     alt: "Dầu gội Scalp Care All About Hair",
     imageClass: "showcase-product-tall",
   },
@@ -35,7 +35,7 @@ export const steps = [
     name: "Dầu xả Bond Complex",
     description:
       "Dùng dầu xả trên thân và ngọn tóc để bổ sung độ mềm mượt sau khi gội.",
-    image: "/dx.png",
+    image: "./assets/dx.png",
     alt: "Dầu xả Bond Complex All About Hair",
     imageClass: "showcase-product-tall",
   },
@@ -44,7 +44,7 @@ export const steps = [
     name: "Xịt dưỡng Biotin",
     description:
       "Hoàn thiện routine bằng xịt dưỡng Biotin tiện lợi, đồng hành cùng mái tóc trong nhịp sống hằng ngày.",
-    image: "/xbotic.png",
+    image: "./assets/xbotic.png",
     alt: "Xịt dưỡng Biotin All About Hair",
     imageClass: "showcase-product-tall",
   },
