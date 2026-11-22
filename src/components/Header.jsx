@@ -7,7 +7,7 @@ const navigation = [
   { label: "Sản Phẩm", href: "/home#products" },
   { label: "Combo Toàn Diện", href: "/home#combo" },
   { label: "Scalp Center", href: "/home#scalp-center", highlighted: true },
-  { label: "Chuyện Tóc", href: "/stories" },
+  { label: "Chuyện Tóc", href: "#/stories" },
 ];
 
 export default function Header() {
