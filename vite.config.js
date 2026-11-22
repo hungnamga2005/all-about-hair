@@ -16,6 +16,7 @@ export default defineConfig({
   ],
 
   publicDir: false,
+
   base: '/all-about-hair/',
 
   build: {
