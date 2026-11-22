@@ -74,7 +74,7 @@ export default function Footer() {
         <aside className="site-footer__feature" aria-label="Khám phá All About Hair">
           <img
             className="site-footer__feature-image"
-            src="/k2.png"
+            src="./assets/k2.png"
             alt="KÉN scrunchie in burgundy satin"
           />
 
