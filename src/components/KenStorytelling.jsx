@@ -306,7 +306,7 @@ export default function KenStorytelling() {
                   loading="lazy"
                   onError={(e) => {
                     e.currentTarget.onerror = null;
-                    e.currentTarget.src = "/compare.jpg";
+                    e.currentTarget.src = "./assets/compare.jpg";
                   }}
                 />
               </div>
