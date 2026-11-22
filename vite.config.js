@@ -17,5 +17,5 @@ export default defineConfig({
 
   publicDir: false,
 
-  base: '/all-about-hai/',
+  base: '/all-about-hair/',
 })
