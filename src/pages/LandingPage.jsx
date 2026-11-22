@@ -378,7 +378,7 @@ const kenNotes = [
     title: "Chỉ một phút",
     accent: "cho mái tóc",
     text: "Cùng một bộ trang phục, cùng một kiểu tóc, nhưng thần thái thay đổi hoàn toàn chỉ với một điểm nhấn từ KÉN. Nhanh gọn, thanh lịch và luôn sẵn sàng.",
-    image: "/compare.jpg",
+    image: "./assets/compare.jpg",
     caption: "FIG. 03 — BEFORE / AFTER",
   },
   {
