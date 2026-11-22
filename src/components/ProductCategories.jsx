@@ -15,9 +15,9 @@ const categories = [
     path: "Sản phẩm / Chăm sóc tóc",
     title: "Chăm sóc tóc",
     products: [
-      { name: "Dầu gội Scalp Care", tagline: "Làm sạch dịu nhẹ cho da đầu", price: "299.000 đ", image: "/dg.png" },
-      { name: "Tẩy tế bào chết da đầu Scalp Scrub", tagline: "Làm sạch sâu, thông thoáng da đầu", price: "379.000 đ", image: "/ttbc.png" },
-      { name: "Xịt dưỡng tóc Biotin Thuần chay", tagline: "Nuôi dưỡng tóc mỗi ngày", price: "299.000 đ", image: "/xbotic.png" },
+      { name: "Dầu gội Scalp Care", tagline: "Làm sạch dịu nhẹ cho da đầu", price: "299.000 đ", image: "./all-about-hair/assets/dg.png" },
+      { name: "Tẩy tế bào chết da đầu Scalp Scrub", tagline: "Làm sạch sâu, thông thoáng da đầu", price: "379.000 đ", image: "./all-about-hair/assets/ttbc.png" },
+      { name: "Xịt dưỡng tóc Biotin Thuần chay", tagline: "Nuôi dưỡng tóc mỗi ngày", price: "299.000 đ", image: "./all-about-hair/assets/xbotic.png" },
     ],
   },
   {
