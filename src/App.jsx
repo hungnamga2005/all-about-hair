@@ -11,7 +11,7 @@ export default function App() {
   const { pathname } = useLocation();
   const isCustomLanding =
     pathname === "/" ||
-    pathname === "/landingpage" ||
+    pathname === "/all-about-hair" ||
     pathname === "/landingpage4";
   const shouldHideFooter =
     pathname === "/" ||
