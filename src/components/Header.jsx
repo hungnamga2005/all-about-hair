@@ -26,7 +26,7 @@ export default function Header() {
           ))}
         </ul>
       </nav>
-      <a className="logo" href="/" aria-label="All About Hair - Trang chủ">
+      <a className="logo" href="/all-about-hair" aria-label="All About Hair - Trang chủ">
         <img src={finalLogo} alt="All About Hair" className="logo-img" />
       </a>
       <div className="header-icons" aria-label="Tài khoản và giỏ hàng">
