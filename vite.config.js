@@ -17,7 +17,7 @@ export default defineConfig({
 
   publicDir: false,
 
-  base: '/all-about-hair/',
+  base: '/',
 
   build: {
     outDir: 'dist',
